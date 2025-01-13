@@ -4,7 +4,7 @@ export const revalidate = 0;
 
 async function getTotalCounts() {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/totalpages`,
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/totalpages`
   );
   const data = await response.json();
   if (!data) return [];
@@ -30,10 +30,10 @@ async function getPostsUrls({
   perPage: number;
 }) {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/posts?pageNo=${page}&postType=${type}&perPage=${perPage}`,
+    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/posts?pageNo=${page}&postType=${type}&perPage=${perPage}`
   );
 
-  const data = await response.json();
+  const data = await response?.json();
 
   if (!data) return [];
 
@@ -55,22 +55,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const details = await getTotalCounts();
 
   const postsUrls = await Promise.all(
-    details.map(async (detail) => {
+    details?.map(async (detail) => {
       const { name, total } = detail;
       const perPage = 50;
       const totalPages = Math.ceil(total / perPage);
 
       const urls = await Promise.all(
         Array.from({ length: totalPages }, (_, i) => i + 1).map((page) =>
-          getPostsUrls({ page, type: name, perPage }),
-        ),
+          getPostsUrls({ page, type: name, perPage })
+        )
       );
 
-      return urls.flat();
-    }),
+      return urls?.flat();
+    })
   );
 
-  const posts = postsUrls.flat();
+  const posts = postsUrls?.flat();
 
   sitemap.push(...posts);
 

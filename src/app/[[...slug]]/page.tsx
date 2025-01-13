@@ -17,22 +17,22 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = nextSlugToWpSlug(params.slug);
-  const isPreview = slug.includes("preview");
+  const slug = nextSlugToWpSlug(params?.slug);
+  const isPreview = slug?.includes("preview");
 
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(SeoQuery),
     {
-      slug: isPreview ? slug.split("preview/")[1] : slug,
+      slug: isPreview ? slug?.split("preview/")[1] : slug,
       idType: isPreview ? "DATABASE_ID" : "URI",
-    },
+    }
   );
 
   if (!contentNode) {
     return notFound();
   }
 
-  const metadata = setSeoData({ seo: contentNode.seo });
+  const metadata = setSeoData({ seo: contentNode?.seo });
 
   return {
     ...metadata,
@@ -47,24 +47,24 @@ export function generateStaticParams() {
 }
 
 export default async function Page({ params }: Props) {
-  const slug = nextSlugToWpSlug(params.slug);
-  const isPreview = slug.includes("preview");
+  const slug = nextSlugToWpSlug(params?.slug);
+  const isPreview = slug?.includes("preview");
   const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
     print(ContentInfoQuery),
     {
-      slug: isPreview ? slug.split("preview/")[1] : slug,
+      slug: isPreview ? slug?.split("preview/")[1] : slug,
       idType: isPreview ? "DATABASE_ID" : "URI",
-    },
+    }
   );
 
   if (!contentNode) return notFound();
 
-  switch (contentNode.contentTypeName) {
+  switch (contentNode?.contentTypeName) {
     case "page":
       return <PageTemplate node={contentNode} />;
     case "post":
       return <PostTemplate node={contentNode} />;
     default:
-      return <p>{contentNode.contentTypeName} not implemented</p>;
+      return <p>{contentNode?.contentTypeName} not implemented</p>;
   }
 }

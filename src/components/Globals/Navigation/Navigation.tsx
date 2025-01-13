@@ -34,6 +34,8 @@ async function getData() {
 export default async function Navigation() {
   const menuItems = await getData();
 
+  // TODO: add default menu
+
   return (
     <nav
       className={styles.navigation}

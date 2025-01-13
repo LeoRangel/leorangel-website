@@ -10,7 +10,7 @@ export async function middleware(request: NextRequest) {
 
   const pathnameWithoutTrailingSlash = request.nextUrl.pathname.replace(
     /\/$/,
-    "",
+    ""
   );
 
   const response = await fetch(
@@ -20,14 +20,14 @@ export async function middleware(request: NextRequest) {
         Authorization: `Basic ${Buffer.from(basicAuth).toString("base64")}`,
         "Content-Type": "application/json",
       },
-    },
+    }
   );
 
-  const data = await response.json();
+  const data = await response?.json();
 
   if (data?.items?.length > 0) {
-    const redirect = data.items.find(
-      (item: any) => item.url === pathnameWithoutTrailingSlash,
+    const redirect = data?.items.find(
+      (item: any) => item?.url === pathnameWithoutTrailingSlash
     );
 
     if (!redirect) {
@@ -35,12 +35,12 @@ export async function middleware(request: NextRequest) {
     }
 
     const newUrl = new URL(
-      redirect.action_data.url,
-      process.env.NEXT_PUBLIC_BASE_URL,
+      redirect?.action_data.url,
+      process.env.NEXT_PUBLIC_BASE_URL
     ).toString();
 
     return NextResponse.redirect(newUrl, {
-      status: redirect.action_code === 301 ? 308 : 307,
+      status: redirect?.action_code === 301 ? 308 : 307,
     });
   }
 }
