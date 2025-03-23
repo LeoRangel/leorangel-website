@@ -7,10 +7,11 @@ import { setSeoData } from "@/utils/seoData";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { ContentInfoQuery } from "@/queries/general/ContentInfoQuery";
 import { ContentNode } from "@/gql/graphql";
-import PageTemplate from "@/components/Templates/Page/PageTemplate";
 import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
-import PostTemplate from "@/components/Templates/Post/PostTemplate";
 import { SeoQuery } from "@/queries/general/SeoQuery";
+import PageTemplate from "@/components/Templates/Page/PageTemplate";
+import PostTemplate from "@/components/Templates/Post/PostTemplate";
+import HomePageTemplate from "@/components/Templates/HomePage/HomePageTemplate";
 
 type Props = {
   params: { slug: string };
@@ -61,6 +62,8 @@ export default async function Page({ params }: Props) {
 
   switch (contentNode?.contentTypeName) {
     case "page":
+      if (contentNode?.uri == "/")
+        return <HomePageTemplate node={contentNode} />;
       return <PageTemplate node={contentNode} />;
     case "post":
       return <PostTemplate node={contentNode} />;
