@@ -3,6 +3,9 @@ import { ContentNode, Page } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { HomePageQuery } from "./HomePageQuery";
 
+import { Container } from "@/components/Globals/Container/Container";
+import { HeroHome } from "./components/HeroHome/HeroHome";
+
 interface TemplateProps {
   node: ContentNode;
 }
@@ -13,9 +16,10 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
   });
 
   return (
-    <div>
-      <h1>HomePage</h1>
+    <Container variant="narrowConstrainedPadded">
+      <HeroHome />
+
       <div dangerouslySetInnerHTML={{ __html: page?.content || "" }} />
-    </div>
+    </Container>
   );
 }
