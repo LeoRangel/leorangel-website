@@ -13,10 +13,11 @@ const ThemeToggle = () => {
 
   return (
     <Button
-      variant="outline"
+      variant="ghost"
       onClick={toggleTheme}
       aria-label="Alternar Tema"
       size="icon"
+      className="cursor-pointer"
     >
       {theme === "dark" ? <Moon size={20} /> : <Sun size={20} />}
     </Button>
