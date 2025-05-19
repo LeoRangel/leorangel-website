@@ -6,7 +6,7 @@ import "@/app/globals.css";
 import Navigation from "@/components/Globals/Navigation/Navigation";
 import { PreviewNotice } from "@/components/Globals/PreviewNotice/PreviewNotice";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/Globals/ThemeToggle/ThemeToggle";
+import Footer from "@/components/Globals/Footer/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,6 +31,7 @@ export default async function RootLayout({
         >
           <Navigation />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
