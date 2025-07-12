@@ -45,7 +45,7 @@ export default async function Navigation() {
 
   return (
     <nav
-      className="w-full py-4"
+      className="w-full py-4 border-b"
       role="navigation"
       itemScope
       itemType="http://schema.org/SiteNavigationElement"
