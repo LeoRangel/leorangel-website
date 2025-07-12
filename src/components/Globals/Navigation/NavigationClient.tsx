@@ -1,19 +1,18 @@
 "use client";
 
 import Link from "next/link";
-import { MenuIcon } from "lucide-react";
 import { MenuItem } from "@/gql/graphql";
 import { ThemeToggle } from "@/components/Globals/ThemeToggle/ThemeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
+import { LuMenu } from "react-icons/lu";
 
 interface NavigationClientProps {
   menuItems: MenuItem[];
@@ -50,7 +49,7 @@ export default function NavigationClient({ menuItems }: NavigationClientProps) {
 
   return (
     <div className="flex items-center justify-between w-full">
-      <div className="flex items-center gap-4">
+      <div className="flex flex-row items-center gap-8">
         {MyLogo()}
 
         <div className="hidden md:flex items-center gap-4">{MenuItems}</div>
@@ -69,7 +68,7 @@ export default function NavigationClient({ menuItems }: NavigationClientProps) {
                 className="cursor-pointer"
                 asChild
               >
-                <MenuIcon className="p-2" />
+                <LuMenu className="p-2" />
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-64">

@@ -1,8 +1,8 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LuMoon, LuSun } from "react-icons/lu";
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -19,7 +19,7 @@ const ThemeToggle = () => {
       size="icon"
       className="cursor-pointer"
     >
-      {theme === "dark" ? <Moon size={20} /> : <Sun size={20} />}
+      {theme === "dark" ? <LuMoon size={20} /> : <LuSun size={20} />}
     </Button>
   );
 };
