@@ -5,6 +5,8 @@ import { HomePageQuery } from "./HomePageQuery";
 
 import { Container } from "@/components/Globals/Container/Container";
 import { HeroHome } from "./components/HeroHome/HeroHome";
+import { LatestPostsHome } from "./components/LatestPostsHome/LatestPostsHome";
+import { Separator } from "@/components/ui/separator";
 
 interface TemplateProps {
   node: ContentNode;
@@ -19,7 +21,15 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
     <Container variant="narrowConstrainedPadded">
       <HeroHome />
 
-      <div dangerouslySetInnerHTML={{ __html: page?.content || "" }} />
+      <Separator />
+
+      <LatestPostsHome />
+
+      <Separator />
+
+      <section className="py-18">
+        <div dangerouslySetInnerHTML={{ __html: page?.content || "" }} />
+      </section>
     </Container>
   );
 }
