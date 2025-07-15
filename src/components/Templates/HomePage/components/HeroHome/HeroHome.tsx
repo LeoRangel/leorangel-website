@@ -1,5 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import { SocialBtnList } from "../SocialBtnList/SocialBtnList";
+import { Heading } from "@/components/Globals/Heading/Heading";
+import { Text } from "@/components/Globals/Text/Text";
 
 interface HeroHomeProps {
   heading?: string;
@@ -15,12 +17,12 @@ const HeroHome = ({
       <div className="container">
         <div className="grid items-center">
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-            <h1 className="mb-4 text-4xl font-bold text-pretty lg:text-5xl">
+            <Heading as="h1" unstyled className="text-5xl">
               {heading}
-            </h1>
-            <p className="mt-0 mb-8 max-w-xl text-muted-foreground lg:text-xl">
+            </Heading>
+            <Text as="p" variant="muted">
               {description}
-            </p>
+            </Text>
             <SocialBtnList />
           </div>
         </div>
