@@ -458,3 +458,14 @@ add_action('rest_api_init', function () {
 });
 
 ```
+
+## Routes
+
+### `/posts` — Infinite Scroll Post Listing Page
+
+Renders a list of posts fetched via **GraphQL using cursor-based pagination** (`endCursor`, `hasNextPage`).
+
+- Initial data is loaded on the **Server Side** for improved performance and SEO.
+- Infinite scroll implemented using **IntersectionObserver** with incremental fetching via `/api/posts`.
+- Internal API (`route.ts`) runs the GraphQL query using `first` and `after` parameters for pagination control.
+- Error handling and loading state (skeleton) are handled on the client side.
