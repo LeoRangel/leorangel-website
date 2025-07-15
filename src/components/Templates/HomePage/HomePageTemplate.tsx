@@ -7,6 +7,7 @@ import { Container } from "@/components/Globals/Container/Container";
 import { HeroHome } from "./components/HeroHome/HeroHome";
 import { LatestPostsHome } from "./components/LatestPostsHome/LatestPostsHome";
 import { Separator } from "@/components/ui/separator";
+import { PinnedProjects } from "./components/PinnedProjects/PinnedProjects";
 
 interface TemplateProps {
   node: ContentNode;
@@ -20,11 +21,12 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
   return (
     <Container variant="narrowConstrainedPadded">
       <HeroHome />
-
       <Separator />
 
       <LatestPostsHome />
+      <Separator />
 
+      <PinnedProjects />
       <Separator />
 
       <section className="py-18">
