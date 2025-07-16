@@ -7,6 +7,7 @@ export const PostArchiveQuery = gql`
         id
         title
         slug
+        uri
         excerpt
         date
         featuredImage {

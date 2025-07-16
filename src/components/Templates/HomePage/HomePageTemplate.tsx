@@ -1,13 +1,12 @@
 import { print } from "graphql/language/printer";
 import { ContentNode, Page } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { HomePageQuery } from "./HomePageQuery";
-
 import { Container } from "@atoms/Container";
+import { Separator } from "@ui/separator";
 import { HeroHome } from "./components/HeroHome";
 import { LatestPostsHome } from "./components/LatestPostsHome/LatestPostsHome";
-import { Separator } from "@ui/separator";
 import { PinnedProjects } from "./components/PinnedProjects/PinnedProjects";
+import { HomePageQuery } from "./HomePageQuery";
 
 interface TemplateProps {
   node: ContentNode;

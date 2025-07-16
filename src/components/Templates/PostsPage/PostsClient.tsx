@@ -1,6 +1,6 @@
 "use client";
 
-import { useInfinitePosts } from "@/hook/useInfinitePosts";
+import { useInfinitePosts } from "@/hooks/useInfinitePosts";
 import { Post } from "@/gql/graphql";
 import { PostCardHorizontal } from "@molecules/PostCardHorizontal/PostCardHorizontal";
 import { Text } from "@atoms/Text";

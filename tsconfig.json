@@ -20,11 +20,12 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
+      "@services/*": ["./src/services/*"],
+      "@providers/*": ["./src/providers/*"],
       "@atoms/*": ["./src/components/atoms/*"],
       "@molecules/*": ["./src/components/molecules/*"],
       "@organisms/*": ["./src/components/organisms/*"],
       "@templates/*": ["./src/components/templates/*"],
-      "@providers/*": ["./src/providers/*"],
       "@ui/*": ["./src/components/ui/*"]
     }
   },
