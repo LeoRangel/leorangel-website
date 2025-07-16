@@ -2,7 +2,7 @@ import { print } from "graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Post, PostConnection } from "@/gql/graphql";
 import { LatestPostsQuery } from "@queries/posts/LatestPostsQuery";
-import { PostCard } from "@molecules/PostCard";
+import { PostCardHorizontal } from "@molecules/PostCardHorizontal/PostCardHorizontal";
 
 async function getData(): Promise<Post[]> {
   try {
@@ -27,7 +27,8 @@ const LatestPostsHome = async () => {
     <>
       {posts?.map((post) => {
         return (
-          <PostCard
+          <PostCardHorizontal
+            className="border-b-1"
             key={`post-card-${post.id}`}
             title={post?.title || ""}
             url={post?.uri || ""}
@@ -49,9 +50,9 @@ const LatestPostsHome = async () => {
         <h2 className="not-prose mb-8 text-2xl font-bold text-pretty lg:text-3xl">
           Latest posts
         </h2>
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-6 overflow-visible">
+        <section className="w-full mb-8 grid grid-cols-1">
           {postsCards()}
-        </div>
+        </section>
       </div>
     </section>
   );

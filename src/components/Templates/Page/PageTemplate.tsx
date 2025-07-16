@@ -12,7 +12,7 @@ interface TemplateProps {
 
 export default async function PageTemplate({ node }: TemplateProps) {
   const { page } = await fetchGraphQL<{ page: Page | null }>(print(PageQuery), {
-    id: node.databaseId,
+    id: node?.databaseId,
   });
 
   if (!page) {

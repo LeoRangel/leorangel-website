@@ -7,7 +7,6 @@ import { HeroHome } from "./components/HeroHome";
 import { LatestPostsHome } from "./components/LatestPostsHome";
 import { PinnedProjects } from "./components/PinnedProjects";
 import { HomePageQuery } from "@queries/page/HomePageQuery";
-import { notFound } from "next/navigation";
 
 interface TemplateProps {
   node: ContentNode;
@@ -17,7 +16,7 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
   const { page } = await fetchGraphQL<{ page: Page | null }>(
     print(HomePageQuery),
     {
-      id: node.databaseId,
+      id: node?.databaseId,
     }
   );
 
@@ -26,11 +25,10 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
       <HeroHome />
       <Separator />
 
-      <LatestPostsHome />
-      <Separator />
-
       <PinnedProjects />
       <Separator />
+
+      <LatestPostsHome />
 
       {page && (
         <section className="py-18">

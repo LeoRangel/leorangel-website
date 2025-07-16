@@ -11,7 +11,7 @@ interface TemplateProps {
 
 export default async function PostTemplate({ node }: TemplateProps) {
   const { post } = await fetchGraphQL<{ post: Post | null }>(print(PostQuery), {
-    id: node.databaseId,
+    id: node?.databaseId,
   });
 
   if (!post) {
