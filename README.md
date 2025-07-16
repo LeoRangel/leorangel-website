@@ -495,6 +495,9 @@ This project follows an Atomic Design-inspired structure to organize components 
 
 Global providers (e.g., `ThemeProvider`) that manage global context, themes, or app-wide state. These are not visual components and are placed separately from the UI structure.
 
----
+## 🧠 GraphQL Folder Structure
 
-This structure improves scalability, encourages reusability, and keeps the project maintainable as it grows.
+GraphQL operations are organized into two main folders:
+
+- `src/queries/`: Contains read operations (queries), grouped by domain (e.g. `post`, `page`, `menu`, etc.).
+- `src/mutations/`: Contains write operations (mutations), grouped by action or feature (e.g. `login`).

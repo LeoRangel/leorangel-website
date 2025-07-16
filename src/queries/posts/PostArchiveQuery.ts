@@ -1,7 +1,7 @@
 import gql from "graphql-tag";
 
 export const PostArchiveQuery = gql`
-  query PostArchive($first: Int!, $after: String) {
+  query PostArchiveQuery($first: Int!, $after: String) {
     posts(first: $first, after: $after) {
       nodes {
         id

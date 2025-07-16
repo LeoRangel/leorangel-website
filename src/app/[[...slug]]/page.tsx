@@ -5,10 +5,10 @@ import { print } from "graphql/language/printer";
 import { setSeoData } from "@/utils/seoData";
 
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { ContentInfoQuery } from "@/queries/general/ContentInfoQuery";
+import { ContentInfoQuery } from "@queries/general/ContentInfoQuery";
 import { ContentNode } from "@/gql/graphql";
 import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
-import { SeoQuery } from "@/queries/general/SeoQuery";
+import { SeoQuery } from "@queries/general/SeoQuery";
 import PageTemplate from "@templates/Page/PageTemplate";
 import PostTemplate from "@templates/Post/PostTemplate";
 import HomePageTemplate from "@templates/HomePage/HomePageTemplate";

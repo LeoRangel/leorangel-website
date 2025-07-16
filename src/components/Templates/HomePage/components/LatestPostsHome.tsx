@@ -1,7 +1,7 @@
 import { print } from "graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Post, PostConnection } from "@/gql/graphql";
-import { LatestPostsQuery } from "./LatestPostsQuery";
+import { LatestPostsQuery } from "@queries/posts/LatestPostsQuery";
 import { PostCard } from "@molecules/PostCard";
 
 async function getData(): Promise<Post[]> {

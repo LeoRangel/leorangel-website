@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { print } from "graphql";
-import { PostArchiveQuery } from "@/queries/general/PostArchiveQuery";
+import { PostArchiveQuery } from "@queries/posts/PostArchiveQuery";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);

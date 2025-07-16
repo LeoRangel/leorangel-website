@@ -1,7 +1,7 @@
 import { print } from "graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Project, ProjectConnection } from "@/gql/graphql";
-import { ProjectsQuery } from "./ProjectsQuery";
+import { ProjectsQuery } from "@queries/projects/ProjectsQuery";
 import { ProjectCard } from "@molecules/ProjectCard";
 import { Heading } from "@atoms/Heading";
 

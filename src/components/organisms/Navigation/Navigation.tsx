@@ -1,29 +1,17 @@
 import { print } from "graphql/language/printer";
-import gql from "graphql-tag";
 
 import { MenuItem, RootQueryToMenuItemConnection } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import NavigationClient from "./NavigationClient";
 import { defaultNavigationMenu } from "@/data/navigation";
 import { Container } from "@atoms/Container";
+import { MenuQuery } from "@queries/menu/MenuQuery";
 
 async function getData(): Promise<MenuItem[]> {
-  const menuQuery = gql`
-    query MenuQuery {
-      menuItems(where: { location: PRIMARY_MENU }) {
-        nodes {
-          uri
-          target
-          label
-        }
-      }
-    }
-  `;
-
   try {
     const { menuItems } = await fetchGraphQL<{
       menuItems: RootQueryToMenuItemConnection;
-    }>(print(menuQuery));
+    }>(print(MenuQuery));
 
     if (!menuItems?.nodes?.length) {
       console.info(

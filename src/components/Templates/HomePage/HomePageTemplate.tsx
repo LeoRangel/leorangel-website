@@ -4,9 +4,9 @@ import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Container } from "@atoms/Container";
 import { Separator } from "@ui/separator";
 import { HeroHome } from "./components/HeroHome";
-import { LatestPostsHome } from "./components/LatestPostsHome/LatestPostsHome";
-import { PinnedProjects } from "./components/PinnedProjects/PinnedProjects";
-import { HomePageQuery } from "./HomePageQuery";
+import { LatestPostsHome } from "./components/LatestPostsHome";
+import { PinnedProjects } from "./components/PinnedProjects";
+import { HomePageQuery } from "@queries/page/HomePageQuery";
 
 interface TemplateProps {
   node: ContentNode;
