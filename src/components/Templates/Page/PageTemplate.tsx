@@ -11,9 +11,13 @@ interface TemplateProps {
 }
 
 export default async function PageTemplate({ node }: TemplateProps) {
-  const { page } = await fetchGraphQL<{ page: Page }>(print(PageQuery), {
+  const { page } = await fetchGraphQL<{ page: Page | null }>(print(PageQuery), {
     id: node.databaseId,
   });
+
+  if (!page) {
+    return <></>;
+  }
 
   return (
     <Container variant="narrowConstrainedPadded">

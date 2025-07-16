@@ -18,15 +18,21 @@ export async function GET(request: Request) {
     return new Response("Invalid token", { status: 401 });
   }
 
-  const { login } = await fetchGraphQL<{ login: LoginPayload }>(
+  const { login } = await fetchGraphQL<{ login: LoginPayload | null }>(
     print(LoginUserMutation)
   );
 
-  const authToken = login.authToken;
+  const authToken = login?.authToken;
+
+  if (!authToken) {
+    return new Response("Invalid authToken", { status: 401 });
+  }
 
   (await draftMode())?.enable();
 
-  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
+  const { contentNode } = await fetchGraphQL<{
+    contentNode: ContentNode | null;
+  }>(
     print(ContentNodeQuery),
     {
       id,

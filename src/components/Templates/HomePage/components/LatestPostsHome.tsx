@@ -6,13 +6,13 @@ import { PostCard } from "@molecules/PostCard";
 
 async function getData(): Promise<Post[]> {
   try {
-    const { posts } = await fetchGraphQL<{ posts: PostConnection }>(
+    const { posts } = await fetchGraphQL<{ posts: PostConnection | null }>(
       print(LatestPostsQuery)
     );
 
     return posts?.nodes || [];
   } catch (error) {
-    console.info("Erro ao buscar posts na API.");
+    console.info("Error searching for latest posts.");
     console.info(error);
     return [];
   }

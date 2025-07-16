@@ -41,21 +41,21 @@ export async function fetchGraphQL<T = any>(
       }
     );
 
-    if (!response?.ok) {
-      console.error("Response Status:", response);
-      throw new Error(response?.statusText);
+    if (!response.ok) {
+      console.error("GraphQL fetch error – Status:", response.status);
+      return {} as T;
     }
 
-    const data = await response?.json();
+    const data = await response.json();
 
     if (data?.errors) {
-      console.error("GraphQL Errors:", data?.errors);
-      throw new Error("Error executing GraphQL query");
+      console.error("GraphQL Errors:", data.errors);
+      return (data.data ?? {}) as T;
     }
 
-    return data?.data;
+    return (data.data ?? {}) as T;
   } catch (error) {
-    console.error(error);
-    throw error;
+    console.error("GraphQL fetch exception:", error);
+    return {} as T;
   }
 }

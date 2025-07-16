@@ -7,13 +7,13 @@ import { Heading } from "@atoms/Heading";
 
 async function getData(): Promise<Project[]> {
   try {
-    const { projects } = await fetchGraphQL<{ projects: ProjectConnection }>(
-      print(ProjectsQuery)
-    );
+    const { projects } = await fetchGraphQL<{
+      projects: ProjectConnection | null;
+    }>(print(ProjectsQuery));
 
     return projects?.nodes || [];
   } catch (error) {
-    console.info("Erro ao buscar projects na API.");
+    console.info("Error searching for projects.");
     console.info(error);
     return [];
   }

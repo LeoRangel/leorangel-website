@@ -3,21 +3,27 @@ import { MetadataRoute } from "next";
 export const revalidate = 0;
 
 async function getTotalCounts() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/totalpages`
-  );
-  const data = await response.json();
-  if (!data) return [];
-  const propertyNames = Object.keys(data);
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/totalpages`,
+      { cache: "no-store" }
+    );
 
-  const excludeItems = ["page", "user", "category", "tag"];
-  let totalArray = propertyNames
-    .filter((name) => !excludeItems.includes(name))
-    .map((name) => {
-      return { name, total: data[name] };
-    });
+    if (!response.ok) throw new Error("Failed to fetch total counts");
 
-  return totalArray;
+    const data = await response.json();
+    if (!data) return [];
+
+    const propertyNames = Object.keys(data);
+    const excludeItems = ["page", "user", "category", "tag"];
+
+    return propertyNames
+      .filter((name) => !excludeItems.includes(name))
+      .map((name) => ({ name, total: data[name] }));
+  } catch (error) {
+    console.error("Sitemap total count fetch failed:", error);
+    return [];
+  }
 }
 
 async function getPostsUrls({
@@ -29,50 +35,54 @@ async function getPostsUrls({
   type: string;
   perPage: number;
 }) {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/posts?pageNo=${page}&postType=${type}&perPage=${perPage}`
-  );
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_WORDPRESS_API_URL}/wp-json/sitemap/v1/posts?pageNo=${page}&postType=${type}&perPage=${perPage}`,
+      { cache: "no-store" }
+    );
 
-  const data = await response?.json();
+    if (!response.ok) throw new Error("Failed to fetch post URLs");
 
-  if (!data) return [];
+    const data = await response.json();
+    if (!data) return [];
 
-  const posts = data.map((post: any) => {
-    return {
+    return data.map((post: any) => ({
       url: `${process.env.NEXT_PUBLIC_BASE_URL}${post.url}`,
       lastModified: new Date(post.post_modified_date)
         .toISOString()
         .split("T")[0],
-    };
-  });
-
-  return posts;
+    }));
+  } catch (error) {
+    console.error("Sitemap post URL fetch failed:", error);
+    return [];
+  }
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const sitemap = [];
+  const sitemap: MetadataRoute.Sitemap = [];
 
   const details = await getTotalCounts();
 
+  if (!details.length) {
+    throw new Error("Sitemap temporarily unavailable");
+  }
+
   const postsUrls = await Promise.all(
-    details?.map(async (detail) => {
-      const { name, total } = detail;
+    details.map(async ({ name, total }) => {
       const perPage = 50;
       const totalPages = Math.ceil(total / perPage);
 
       const urls = await Promise.all(
-        Array.from({ length: totalPages }, (_, i) => i + 1).map((page) =>
-          getPostsUrls({ page, type: name, perPage })
+        Array.from({ length: totalPages }, (_, i) =>
+          getPostsUrls({ page: i + 1, type: name, perPage })
         )
       );
 
-      return urls?.flat();
+      return urls.flat();
     })
   );
 
-  const posts = postsUrls?.flat();
-
-  sitemap.push(...posts);
+  sitemap.push(...postsUrls.flat());
 
   return sitemap;
 }

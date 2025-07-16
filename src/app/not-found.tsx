@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
 import { print } from "graphql/language/printer";
-
 import { setSeoData } from "@/utils/seoData";
-
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { ContentNode, Page, PostTypeSeo } from "@/gql/graphql";
 import { PageQuery } from "@queries/page/PageQuery";
 import { SeoQuery } from "@queries/general/SeoQuery";
+import { Heading } from "@atoms/Heading";
+import { Container } from "@/components/atoms/Container";
 
 const notFoundPageWordPressId = 16;
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { contentNode } = await fetchGraphQL<{ contentNode: ContentNode }>(
-    print(SeoQuery),
-    { slug: notFoundPageWordPressId, idType: "DATABASE_ID" }
-  );
+  const { contentNode } = await fetchGraphQL<{
+    contentNode: ContentNode | null;
+  }>(print(SeoQuery), { slug: notFoundPageWordPressId, idType: "DATABASE_ID" });
 
   let metadata;
 
@@ -35,19 +34,23 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function NotFound() {
-  const { page } = await fetchGraphQL<{ page: Page }>(print(PageQuery), {
+  const { page } = await fetchGraphQL<{ page: Page | null }>(print(PageQuery), {
     id: notFoundPageWordPressId,
   });
-
-  if (page?.content) {
-    return <div dangerouslySetInnerHTML={{ __html: page?.content || " " }} />;
-  }
 
   // TODO: Add page not found default template
 
   return (
-    <div>
-      <h1>Page Not Found...</h1>
+    <div className="w-full my-20 flex justify-center align-middle text-center">
+      <Container>
+        {page?.content ? (
+          <div dangerouslySetInnerHTML={{ __html: page?.content || " " }} />
+        ) : (
+          <Heading as="h1" unstyled>
+            Page Not Found...
+          </Heading>
+        )}
+      </Container>
     </div>
   );
 }

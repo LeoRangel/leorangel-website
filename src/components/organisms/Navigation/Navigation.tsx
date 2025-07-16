@@ -14,16 +14,14 @@ async function getData(): Promise<MenuItem[]> {
     }>(print(MenuQuery));
 
     if (!menuItems?.nodes?.length) {
-      console.info(
-        "Nenhum item de menu encontrado na API. Usando menu default."
-      );
+      console.info("No menu items found. Using default menu.");
       return defaultNavigationMenu.nodes as MenuItem[];
     }
 
     return menuItems.nodes;
   } catch (error) {
-    console.info("Erro ao buscar menu na API. Usando menu default.");
-    console.info(error);
+    console.info("Error fetching menu: ", error);
+    console.info("Using default menu.");
     return defaultNavigationMenu.nodes as MenuItem[];
   }
 }

@@ -10,9 +10,13 @@ interface TemplateProps {
 }
 
 export default async function PostTemplate({ node }: TemplateProps) {
-  const { post } = await fetchGraphQL<{ post: Post }>(print(PostQuery), {
+  const { post } = await fetchGraphQL<{ post: Post | null }>(print(PostQuery), {
     id: node.databaseId,
   });
+
+  if (!post) {
+    return <></>;
+  }
 
   return (
     <Container variant="narrowConstrainedPadded">

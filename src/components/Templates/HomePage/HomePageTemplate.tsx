@@ -7,15 +7,19 @@ import { HeroHome } from "./components/HeroHome";
 import { LatestPostsHome } from "./components/LatestPostsHome";
 import { PinnedProjects } from "./components/PinnedProjects";
 import { HomePageQuery } from "@queries/page/HomePageQuery";
+import { notFound } from "next/navigation";
 
 interface TemplateProps {
   node: ContentNode;
 }
 
 export default async function HomePageTemplate({ node }: TemplateProps) {
-  const { page } = await fetchGraphQL<{ page: Page }>(print(HomePageQuery), {
-    id: node.databaseId,
-  });
+  const { page } = await fetchGraphQL<{ page: Page | null }>(
+    print(HomePageQuery),
+    {
+      id: node.databaseId,
+    }
+  );
 
   return (
     <Container variant="narrowConstrainedPadded">
@@ -28,9 +32,11 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
       <PinnedProjects />
       <Separator />
 
-      <section className="py-18">
-        <div dangerouslySetInnerHTML={{ __html: page?.content || "" }} />
-      </section>
+      {page && (
+        <section className="py-18">
+          <div dangerouslySetInnerHTML={{ __html: page?.content || "" }} />
+        </section>
+      )}
     </Container>
   );
 }

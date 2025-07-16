@@ -21,7 +21,7 @@ export async function GET(req: Request) {
 
   try {
     const { posts } = await fetchGraphQL(print(PostArchiveQuery), {
-      first: 2,
+      first: 6,
       after: after || undefined,
     });
 
