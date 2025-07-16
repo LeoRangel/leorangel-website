@@ -3,7 +3,6 @@ import { print } from "graphql/language/printer";
 import { ContentNode, Post } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 
-import styles from "./PostTemplate.module.css";
 import { PostQuery } from "./PostQuery";
 import { PostHeader } from "./components/PostHeader/PostHeader";
 import { Container } from "@/components/Globals/Container/Container";
@@ -18,7 +17,7 @@ export default async function PostTemplate({ node }: TemplateProps) {
   });
 
   return (
-    <div className={styles.post}>
+    <Container variant="narrowConstrainedPadded">
       <PostHeader
         title={post.title || ""}
         author={{
@@ -26,12 +25,12 @@ export default async function PostTemplate({ node }: TemplateProps) {
           avatarUrl: post.author?.node.avatar?.url || "",
         }}
         date={post.date || ""}
-        readTime="5 min"
+        readTime=""
       />
 
-      <Container variant="narrowConstrainedPadded">
+      <section>
         <div dangerouslySetInnerHTML={{ __html: post.content || "" }} />
-      </Container>
-    </div>
+      </section>
+    </Container>
   );
 }
