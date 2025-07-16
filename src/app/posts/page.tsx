@@ -1,6 +1,5 @@
-import { Container } from "@/components/Globals/Container/Container";
-import { Separator } from "@/components/ui/separator";
-import { Heading } from "@/components/Globals/Heading/Heading";
+import { Container } from "@atoms/Container";
+import { Heading } from "@atoms/Heading";
 import PostsClient from "./PostsClient";
 
 async function fetchInitialPosts() {

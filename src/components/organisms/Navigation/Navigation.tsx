@@ -3,9 +3,9 @@ import gql from "graphql-tag";
 
 import { MenuItem, RootQueryToMenuItemConnection } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { Container } from "../Container/Container";
 import NavigationClient from "./NavigationClient";
 import { defaultNavigationMenu } from "@/data/navigation";
+import { Container } from "@atoms/Container";
 
 async function getData(): Promise<MenuItem[]> {
   const menuQuery = gql`

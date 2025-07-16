@@ -5,7 +5,7 @@ import { setSeoData } from "@/utils/seoData";
 
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { ContentNode, Page, PostTypeSeo } from "@/gql/graphql";
-import { PageQuery } from "@/components/Templates/Page/PageQuery";
+import { PageQuery } from "@templates/Page/PageQuery";
 import { SeoQuery } from "@/queries/general/SeoQuery";
 
 const notFoundPageWordPressId = 16;

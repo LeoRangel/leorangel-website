@@ -9,9 +9,9 @@ import { ContentInfoQuery } from "@/queries/general/ContentInfoQuery";
 import { ContentNode } from "@/gql/graphql";
 import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
 import { SeoQuery } from "@/queries/general/SeoQuery";
-import PageTemplate from "@/components/Templates/Page/PageTemplate";
-import PostTemplate from "@/components/Templates/Post/PostTemplate";
-import HomePageTemplate from "@/components/Templates/HomePage/HomePageTemplate";
+import PageTemplate from "@templates/Page/PageTemplate";
+import PostTemplate from "@templates/Post/PostTemplate";
+import HomePageTemplate from "@templates/HomePage/HomePageTemplate";
 
 type Props = {
   params: { slug: string };

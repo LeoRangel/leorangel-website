@@ -5,10 +5,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@ui/card";
 import { formatDate } from "@/utils/formatDate";
 import Link from "next/link";
-import { Heading } from "../Heading/Heading";
+import { Heading } from "../atoms/Heading";
 import Image from "next/image";
 
 interface PostCardProps {

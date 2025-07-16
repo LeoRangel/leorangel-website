@@ -1,3 +1,5 @@
+import Link from "next/link";
+import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -5,11 +7,9 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@ui/card";
 import { formatDate } from "@/utils/formatDate";
-import Link from "next/link";
-import { Heading } from "../Heading/Heading";
-import Image from "next/image";
+import { Heading } from "@atoms/Heading";
 
 interface PostCardHorizontalProps {
   title: string;

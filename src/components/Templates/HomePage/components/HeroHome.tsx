@@ -1,7 +1,6 @@
-import { Separator } from "@/components/ui/separator";
-import { SocialBtnList } from "../SocialBtnList/SocialBtnList";
-import { Heading } from "@/components/Globals/Heading/Heading";
-import { Text } from "@/components/Globals/Text/Text";
+import { SocialBtnList } from "./SocialBtnList";
+import { Heading } from "@atoms/Heading";
+import { Text } from "@atoms/Text";
 
 interface HeroHomeProps {
   heading?: string;

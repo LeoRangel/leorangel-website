@@ -5,9 +5,9 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Heading } from "../Heading/Heading";
+} from "@ui/card";
 import Image from "next/image";
+import { Heading } from "../atoms/Heading";
 
 interface ProjectCardProps {
   title: string;

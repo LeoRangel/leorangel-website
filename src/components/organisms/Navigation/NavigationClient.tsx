@@ -2,16 +2,16 @@
 
 import Link from "next/link";
 import { MenuItem } from "@/gql/graphql";
-import { ThemeToggle } from "@/components/Globals/ThemeToggle/ThemeToggle";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ThemeToggle } from "@molecules/ThemeToggle";
+import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
-import { Button } from "@/components/ui/button";
+} from "@ui/sheet";
+import { Button } from "@ui/button";
 import { LuMenu } from "react-icons/lu";
 
 interface NavigationClientProps {

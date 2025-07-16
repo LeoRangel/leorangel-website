@@ -469,3 +469,32 @@ Renders a list of posts fetched via **GraphQL using cursor-based pagination** (`
 - Infinite scroll implemented using **IntersectionObserver** with incremental fetching via `/api/posts`.
 - Internal API (`route.ts`) runs the GraphQL query using `first` and `after` parameters for pagination control.
 - Error handling and loading state (skeleton) are handled on the client side.
+
+## 🧱 Component Structure
+
+This project follows an Atomic Design-inspired structure to organize components by responsibility and reusability.
+
+### 📁 `/components`
+
+- **/ui/**  
+  Reusable visual components from the `shadcn/ui` library (e.g., Button, Card, Avatar). These are low-level UI elements used throughout the app.
+
+- **/atoms/**  
+  The smallest building blocks of the UI. These include text elements, icons, theme toggles, or basic wrappers. Usually built on top of `/ui` components.
+
+- **/molecules/**  
+  Combinations of atoms that form slightly more complex UI components (e.g., PostCard, ProjectCard).
+
+- **/organisms/**  
+  Larger components made of multiple molecules and atoms, like the Header, Footer, or Navigation.
+
+- **/templates/**  
+  Page-level layouts or template sections. Each template may have its own `/components/` folder for logic or UI specific to that page.
+
+### 📁 `/providers`
+
+Global providers (e.g., `ThemeProvider`) that manage global context, themes, or app-wide state. These are not visual components and are placed separately from the UI structure.
+
+---
+
+This structure improves scalability, encourages reusability, and keeps the project maintainable as it grows.

@@ -2,8 +2,8 @@ import { print } from "graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Project, ProjectConnection } from "@/gql/graphql";
 import { ProjectsQuery } from "./ProjectsQuery";
-import { ProjectCard } from "@/components/Globals/ProjectCard/ProjectCard";
-import { Heading } from "@/components/Globals/Heading/Heading";
+import { ProjectCard } from "@molecules/ProjectCard";
+import { Heading } from "@atoms/Heading";
 
 async function getData(): Promise<Project[]> {
   try {

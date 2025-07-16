@@ -4,8 +4,8 @@ import { ContentNode, Post } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 
 import { PostQuery } from "./PostQuery";
-import { PostHeader } from "./components/PostHeader/PostHeader";
-import { Container } from "@/components/Globals/Container/Container";
+import { PostHeader } from "./components/PostHeader";
+import { Container } from "@atoms/Container";
 
 interface TemplateProps {
   node: ContentNode;

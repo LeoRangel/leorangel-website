@@ -2,9 +2,9 @@
 
 import { useInfinitePosts } from "@/hook/useInfinitePosts";
 import { Post } from "@/gql/graphql";
-import { PostCardHorizontal } from "@/components/Globals/PostCardHorizontal/PostCardHorizontal";
-import { Text } from "@/components/Globals/Text/Text";
-import { PostCardHorizontalSkeleton } from "@/components/Globals/PostCardHorizontal/PostCardHorizontalSkeleton";
+import { PostCardHorizontal } from "@molecules/PostCardHorizontal/PostCardHorizontal";
+import { Text } from "@atoms/Text";
+import { PostCardHorizontalSkeleton } from "@molecules/PostCardHorizontal/PostCardHorizontalSkeleton";
 
 type PostsClientProps = {
   initialPosts?: Post[];
