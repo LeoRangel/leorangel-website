@@ -9,7 +9,7 @@ import { PinnedProjects } from "./components/PinnedProjects";
 import { HomePageQuery } from "@queries/page/HomePageQuery";
 
 interface TemplateProps {
-  node: ContentNode;
+  node: ContentNode | null;
 }
 
 export default async function HomePageTemplate({ node }: TemplateProps) {

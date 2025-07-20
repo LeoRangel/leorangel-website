@@ -18,6 +18,7 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = nextSlugToWpSlug(params?.slug || "");
   const isPreview = slug?.includes("preview");
+  const isHomePage = slug === "/";
 
   const { contentNode } = await fetchGraphQL<{
     contentNode: ContentNode | null;
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     idType: isPreview ? "DATABASE_ID" : "URI",
   });
 
-  if (!contentNode) {
+  if (!contentNode && !isHomePage) {
     return notFound();
   }
 
@@ -47,6 +48,7 @@ export function generateStaticParams() {
 export default async function Page({ params }: Props) {
   const slug = nextSlugToWpSlug(params?.slug);
   const isPreview = slug?.includes("preview");
+  const isHomePage = slug === "/";
   const { contentNode } = await fetchGraphQL<{
     contentNode: ContentNode | null;
   }>(print(ContentInfoQuery), {
@@ -54,16 +56,16 @@ export default async function Page({ params }: Props) {
     idType: isPreview ? "DATABASE_ID" : "URI",
   });
 
-  if (!contentNode) return notFound();
+  if (!contentNode && !isHomePage) return notFound();
+
+  if (isHomePage) return <HomePageTemplate node={contentNode} />;
 
   switch (contentNode?.contentTypeName) {
     case "page":
-      if (contentNode?.uri == "/")
-        return <HomePageTemplate node={contentNode} />;
       return <PageTemplate node={contentNode} />;
     case "post":
       return <PostTemplate node={contentNode} />;
     default:
-      return <p>{contentNode?.contentTypeName} not implemented</p>;
+      return notFound();
   }
 }
