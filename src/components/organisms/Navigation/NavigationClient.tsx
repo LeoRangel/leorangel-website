@@ -13,6 +13,7 @@ import {
 } from "@ui/sheet";
 import { Button } from "@ui/button";
 import { LuMenu } from "react-icons/lu";
+import { Text } from "@/components/atoms/Text";
 
 interface NavigationClientProps {
   menuItems: MenuItem[];
@@ -20,9 +21,15 @@ interface NavigationClientProps {
 
 function MyLogo() {
   return (
-    <Avatar className="w-8 h-8">
-      <AvatarImage src={""} alt={"Meu Nome"} />
-      <AvatarFallback>{"Meu Nome".charAt(0)}</AvatarFallback>
+    <Avatar className="not-prose w-8 h-8">
+      <AvatarImage
+        src={"https://github.com/leorangel.png"}
+        alt={"Leandro Rangel"}
+        width={"100%"}
+        height={"100%"}
+        loading="lazy"
+      />
+      <AvatarFallback>{"Leandro Rangel".charAt(0)}</AvatarFallback>
     </Avatar>
   );
 }
@@ -51,12 +58,16 @@ export default function NavigationClient({ menuItems }: NavigationClientProps) {
     <div className="flex items-center justify-between w-full">
       <div className="flex flex-row items-center gap-8">
         {MyLogo()}
-
-        <div className="hidden md:flex items-center gap-4">{MenuItems}</div>
+        <div>
+          <Text as="span">Leandro Rangel</Text>
+        </div>
       </div>
 
       <div className="flex items-center gap-2">
-        <ThemeToggle />
+        <div className="hidden md:flex items-center gap-4">
+          {MenuItems}
+          <ThemeToggle />
+        </div>
 
         <div className="md:hidden">
           <Sheet>
