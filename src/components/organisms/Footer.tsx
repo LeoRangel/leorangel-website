@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className="w-full mt-10">
       <Separator />
       <div className="text-center text-sm text-muted-foreground py-4">
-        © {new Date().getFullYear()} Todos os direitos reservados.
+        © {new Date().getFullYear()} | Developed by Leandro Rangel
       </div>
     </footer>
   );
