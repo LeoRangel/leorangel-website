@@ -18,7 +18,7 @@ export default async function RootLayout({
   const { isEnabled } = await draftMode();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`prose prose-neutral dark:prose-invert max-w-none ${inter.className}`}
       >
