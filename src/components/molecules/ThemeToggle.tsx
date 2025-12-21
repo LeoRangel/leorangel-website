@@ -4,6 +4,7 @@ import { useTheme } from "next-themes";
 import { Button } from "@ui/button";
 import { LuMoon, LuSun } from "react-icons/lu";
 import { useEffect, useState } from "react";
+import { Spinner } from "@ui/spinner";
 
 const ThemeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -12,8 +13,6 @@ const ThemeToggle = () => {
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  if (!mounted) return null;
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -26,8 +25,11 @@ const ThemeToggle = () => {
       aria-label="Alternar Tema"
       size="icon"
       className="cursor-pointer"
+      disabled={!mounted}
     >
-      {theme === "dark" ? <LuMoon size={20} /> : <LuSun size={20} />}
+      {!mounted && <Spinner />}
+      {mounted && theme === "dark" && <LuMoon size={20} />}
+      {mounted && theme === "light" && <LuSun size={20} />}
     </Button>
   );
 };
