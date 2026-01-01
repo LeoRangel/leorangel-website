@@ -21,7 +21,7 @@ interface NavigationClientProps {
 
 function MyLogo() {
   return (
-    <Avatar className="not-prose w-8 h-8">
+    <Avatar className="not-prose w-10 h-10">
       <AvatarImage
         src={"https://github.com/leorangel.png"}
         alt={"Leandro Rangel"}
@@ -58,8 +58,11 @@ export default function NavigationClient({ menuItems }: NavigationClientProps) {
     <div className="flex items-center justify-between w-full">
       <div className="flex flex-row items-center gap-8">
         {MyLogo()}
-        <div>
+        <div className="flex flex-col">
           <Text as="span">Leandro Rangel</Text>
+          <Text as="span" variant="muted" size="xs">
+            Software Engineer
+          </Text>
         </div>
       </div>
 
