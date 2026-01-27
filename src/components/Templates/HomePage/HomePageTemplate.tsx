@@ -17,7 +17,7 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
     print(HomePageQuery),
     {
       id: node?.databaseId,
-    }
+    },
   );
 
   return (
@@ -28,10 +28,7 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
 
       <LatestPostsHome />
 
-      <Container variant="narrowConstrainedPadded">
-        <PinnedProjects />
-        <Separator />
-      </Container>
+      <PinnedProjects />
 
       <Container variant="narrowConstrainedPadded">
         {page && (
