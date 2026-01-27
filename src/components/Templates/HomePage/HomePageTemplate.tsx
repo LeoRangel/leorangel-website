@@ -21,20 +21,25 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
   );
 
   return (
-    <Container variant="narrowConstrainedPadded">
-      <HeroHome />
-      <Separator />
-
-      <PinnedProjects />
-      <Separator />
+    <>
+      <Container variant="narrowConstrainedPadded">
+        <HeroHome />
+      </Container>
 
       <LatestPostsHome />
 
-      {page && (
-        <section className="py-18">
-          <div dangerouslySetInnerHTML={{ __html: page?.content || "" }} />
-        </section>
-      )}
-    </Container>
+      <Container variant="narrowConstrainedPadded">
+        <PinnedProjects />
+        <Separator />
+      </Container>
+
+      <Container variant="narrowConstrainedPadded">
+        {page && (
+          <section className="py-18">
+            <div dangerouslySetInnerHTML={{ __html: page?.content || "" }} />
+          </section>
+        )}
+      </Container>
+    </>
   );
 }

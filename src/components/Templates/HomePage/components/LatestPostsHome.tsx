@@ -2,12 +2,15 @@ import { print } from "graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Post, PostConnection } from "@/gql/graphql";
 import { LatestPostsQuery } from "@queries/posts/LatestPostsQuery";
-import { PostCardHorizontal } from "@molecules/PostCardHorizontal/PostCardHorizontal";
+import { Container } from "@atoms/Container";
+import { Heading } from "@atoms/Heading";
+import { Text } from "@atoms/Text";
+import { PostList } from "@organisms/PostList";
 
 async function getData(): Promise<Post[]> {
   try {
     const { posts } = await fetchGraphQL<{ posts: PostConnection | null }>(
-      print(LatestPostsQuery)
+      print(LatestPostsQuery),
     );
 
     return posts?.nodes || [];
@@ -18,42 +21,38 @@ async function getData(): Promise<Post[]> {
   }
 }
 
-const LatestPostsHome = async () => {
+interface LatestPostsHomeProps {
+  heading?: string;
+  description?: string;
+}
+
+const LatestPostsHome = async ({
+  heading = "Últimos posts",
+  description = "Compartilhando alguns aprendizados e experiências reais do dia a dia",
+}: LatestPostsHomeProps) => {
   const posts = await getData();
 
-  if (!posts || posts?.length < 1) <></>;
-
-  const postsCards = () => (
-    <>
-      {posts?.map((post) => {
-        return (
-          <PostCardHorizontal
-            className="border-b-1"
-            key={`post-card-${post.id}`}
-            title={post?.title || ""}
-            url={post?.uri || ""}
-            excerpt={post?.excerpt || ""}
-            image={{
-              url: post?.featuredImage?.node?.sourceUrl || "",
-              alt: post?.featuredImage?.node?.altText || "",
-            }}
-            date={post?.date || ""}
-          />
-        );
-      })}
-    </>
-  );
+  if (!posts || posts?.length < 1) null;
 
   return (
-    <section className="py-20">
-      <div className="container">
-        <h2 className="not-prose mb-8 text-2xl font-bold text-pretty lg:text-3xl">
-          Latest posts
-        </h2>
-        <section className="w-full mb-8 grid grid-cols-1">
-          {postsCards()}
-        </section>
-      </div>
+    <section id="blog" className="py-20 px-6 bg-gray-50 dark:bg-gray-900">
+      <Container variant="narrowConstrainedPadded">
+        <Heading
+          as="h2"
+          weight="extrabold"
+          className="text-3xl md:text-4xl mb-4"
+        >
+          {heading}
+        </Heading>
+
+        <Text as="p" variant="muted">
+          {description}
+        </Text>
+
+        <div className="w-full grid gap-4 mt-12">
+          <PostList posts={posts} />
+        </div>
+      </Container>
     </section>
   );
 };
