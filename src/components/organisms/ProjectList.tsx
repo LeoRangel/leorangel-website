@@ -9,6 +9,7 @@ const ProjectList = ({ projects }: { projects: Project[] }) => {
       {projects.map((project) => (
         <ProjectCard
           key={`project-card-${project.id}`}
+          id={project.id}
           title={project?.title || ""}
           link={project?.projects?.link || ""}
           description={project?.projects?.description || ""}

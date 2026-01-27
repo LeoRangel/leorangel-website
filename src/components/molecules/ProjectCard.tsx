@@ -8,10 +8,11 @@ import {
 } from "@ui/card";
 import { Heading } from "../atoms/Heading";
 import { Maybe } from "@/gql/graphql";
-import { Text } from "@atoms/Text";
 import { LuExternalLink, LuGithub } from "react-icons/lu";
+import { Badge } from "@ui/badge";
 
 interface ProjectCardProps {
+  id: string;
   title: string;
   link: string;
   description: string;
@@ -20,6 +21,7 @@ interface ProjectCardProps {
 }
 
 const ProjectCard = ({
+  id,
   title,
   link,
   description,
@@ -70,12 +72,21 @@ const ProjectCard = ({
               </CardDescription>
             )}
 
-            <div className="flex items-center gap-1">
-              <div className="w-3 h-3 bg-gray-900 dark:bg-gray-50 rounded-full"></div>
-              <Text as="span" variant="muted" size="xs">
-                {technologies?.join(", ")}
-              </Text>
-            </div>
+            <ul
+              className="not-prose list-none flex items-center flex-wrap gap-2 m-0 p-0"
+              aria-label="Tecnologias do projeto"
+            >
+              {technologies?.map((item, index) => (
+                <li
+                  className="flex"
+                  key={`project-${id}-technologies-item-${index}`}
+                >
+                  <Badge variant="secondary">
+                    <span className="sr-only">Tecnologia:</span> {item}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
           </CardContent>
         </Card>
       </Link>
