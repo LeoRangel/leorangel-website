@@ -9,13 +9,10 @@ const PostList = ({ posts }: { posts: Post[] }) => {
       {posts.map((post) => (
         <PostCardHorizontal
           key={`post-card-${post.id}`}
+          id={post.id}
           title={post?.title || ""}
           url={post?.uri || ""}
           excerpt={post?.excerpt || ""}
-          image={{
-            url: post?.featuredImage?.node?.sourceUrl || "",
-            alt: post?.featuredImage?.node?.altText || "",
-          }}
           date={post?.date || ""}
           tags={post?.tags?.nodes}
         />

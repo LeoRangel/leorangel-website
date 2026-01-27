@@ -28,15 +28,12 @@ export default function PostsClient({
       <section className="mb-8 grid grid-cols-1">
         {posts.map((post) => (
           <PostCardHorizontal
-            className="border-b-1"
             key={`post-card-${post.id}`}
+            id={post.id}
+            className="border-b-1"
             title={post?.title || ""}
             url={post?.uri || ""}
             excerpt={post?.excerpt || ""}
-            image={{
-              url: post?.featuredImage?.node?.sourceUrl || "",
-              alt: post?.featuredImage?.node?.altText || "",
-            }}
             date={post?.date || ""}
           />
         ))}

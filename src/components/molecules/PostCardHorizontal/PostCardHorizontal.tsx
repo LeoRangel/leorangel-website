@@ -12,25 +12,23 @@ import { Heading } from "@atoms/Heading";
 import { LuCalendar, LuSparkles } from "react-icons/lu";
 import { Tag } from "@/gql/graphql";
 import { isNewPost } from "@/utils/isNewPost";
+import { Badge } from "@ui/badge";
 
 interface PostCardHorizontalProps {
+  id: string;
   title: string;
   url?: string;
   excerpt?: string;
-  image?: {
-    url: string;
-    alt: string;
-  };
   date: string;
   tags?: Tag[];
   className?: string;
 }
 
 const PostCardHorizontal = ({
+  id,
   title,
   url,
   excerpt,
-  image,
   date,
   className,
   tags,
@@ -49,21 +47,25 @@ const PostCardHorizontal = ({
           className={`flex gap-4 group rounded-md shadow-none hover:shadow-md transition-all cursor-pointer`}
         >
           <CardHeader>
-            <div className="flex items-center gap-2 mb-4">
-              {tags?.map((tag) => (
-                <span
-                  key={`post-tag-${tag?.id}`}
-                  className="px-2 py-1 bg-gray-100 text-gray-700 dark:bg-gray-900 dark:text-gray-100 text-xs rounded-md"
-                >
-                  {tag?.name}
-                </span>
-              ))}
+            <div className="flex items-center gap-2">
+              <ul
+                className="not-prose list-none flex items-center gap-2 m-0 p-0"
+                aria-label="Tags do post"
+              >
+                {tags?.map((tag) => (
+                  <li className="flex" key={`post-${id}-tag-${tag?.id}`}>
+                    <Badge variant="secondary">
+                      <span className="sr-only">Tag:</span> {tag?.name}
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
 
               {showNewPostTag && (
-                <span className="flex items-center gap-1 text-xs text-gray-700 dark:text-gray-100">
+                <Badge variant="ghost" aria-label="Post novo" role="status">
                   <LuSparkles className="w-3 h-3" />
                   Novo
-                </span>
+                </Badge>
               )}
             </div>
           </CardHeader>
