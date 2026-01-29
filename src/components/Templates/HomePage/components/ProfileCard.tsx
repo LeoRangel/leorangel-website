@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/card";
 import { Text } from "@atoms/Text";
 import { Badge } from "@ui/badge";
-import { SocialBtnList } from "./SocialBtnList";
+import { SocialBtnList } from "@organisms/SocialBtnList";
 import { profileInfo } from "@/data/profileInfo";
 import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
 
@@ -74,7 +74,9 @@ const ProfileCard = () => {
             Conecte-se comigo:
           </Text>
 
-          <SocialBtnList />
+          <div className="flex gap-3">
+            <SocialBtnList />
+          </div>
         </div>
       </CardFooter>
     </Card>

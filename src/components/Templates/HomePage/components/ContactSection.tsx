@@ -4,7 +4,7 @@ import { Text } from "@atoms/Text";
 import { Button } from "@ui/button";
 import { Separator } from "@ui/separator";
 import Link from "next/link";
-import { SocialLinks } from "../../../organisms/SocialLinks";
+import { SocialLinks } from "@organisms/SocialLinks";
 
 const ContactSection = () => {
   const email = socialLinks?.find((item) => item.name === "E-mail");

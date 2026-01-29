@@ -7,7 +7,7 @@ const SocialBtnList = () => {
   if (!socialLinks || socialLinks?.length < 1) null;
 
   return (
-    <div className="flex gap-2.5">
+    <>
       {socialLinks?.map(({ name, href, iconKey }) => {
         const Icon = getIconByKey(iconKey);
         if (!Icon) return null;
@@ -20,7 +20,7 @@ const SocialBtnList = () => {
           </Button>
         );
       })}
-    </div>
+    </>
   );
 };
 
