@@ -1,0 +1,61 @@
+import { socialLinks } from "@/data/sociaLinks";
+import { getIconByKey } from "@/utils/getIconsByKey";
+import { Heading } from "@atoms/Heading";
+import { Text } from "@atoms/Text";
+import { Button } from "@ui/button";
+import { Separator } from "@ui/separator";
+import Link from "next/link";
+import { SocialLinks } from "./components/SocialLinks";
+
+const ContactSection = () => {
+  const email = socialLinks?.find((item) => item.name === "E-mail");
+
+  if (!socialLinks || socialLinks?.length < 1) null;
+
+  return (
+    <section id="contact">
+      <div>
+        <Heading
+          as="h2"
+          weight="extrabold"
+          className="text-1xl md:text-4xl mb-4"
+        >
+          Contato
+        </Heading>
+        <Text as="p" variant="muted">
+          Conecte-se comigo:
+        </Text>
+      </div>
+
+      <SocialLinks />
+
+      {email && (
+        <>
+          <Separator className="my-8" />
+          <div>
+            <Text as="p" variant="muted">
+              Gostou do conteúdo? Me mande uma mensagem!
+            </Text>
+
+            <Button
+              variant="highlight"
+              size="lg"
+              asChild
+              className="w-full px-4 py-3 rounded-lg transition-colors no-underline"
+            >
+              <Link
+                href={email?.href || ""}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Enviar email
+              </Link>
+            </Button>
+          </div>
+        </>
+      )}
+    </section>
+  );
+};
+
+export { ContactSection };
