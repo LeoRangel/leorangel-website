@@ -44,9 +44,9 @@ const PostCardHorizontal = ({
         title={title}
       >
         <Card
-          className={`flex gap-4 group rounded-md shadow-none hover:shadow-md transition-all cursor-pointer`}
+          className={`flex gap-4 group rounded-md shadow-none hover:shadow-md hover:border-highlight transition-all cursor-pointer`}
         >
-          <CardHeader>
+          <CardHeader className="gap-0">
             <div className="flex items-center gap-2">
               <ul
                 className="not-prose list-none flex items-center gap-2 m-0 p-0"
@@ -76,7 +76,7 @@ const PostCardHorizontal = ({
                 <Heading
                   as="h3"
                   weight="extrabold"
-                  className="text-1xl group-hover:text-[#10B981] transition-colors"
+                  className="text-1xl mb-1 group-hover:text-highlight transition-colors"
                 >
                   {title}
                 </Heading>
@@ -92,7 +92,7 @@ const PostCardHorizontal = ({
             )}
           </CardContent>
 
-          <CardFooter className="mt-6">
+          <CardFooter>
             {date && (
               <time
                 dateTime={date}

@@ -35,15 +35,21 @@ const PinnedProjects = async ({
 
   return (
     <section id="projects">
-      <Heading as="h2" weight="extrabold" className="text-1xl md:text-4xl mb-4">
-        {heading}
-      </Heading>
+      <div>
+        <Heading
+          as="h2"
+          weight="extrabold"
+          className="text-1xl md:text-4xl mb-4"
+        >
+          {heading}
+        </Heading>
 
-      <Text as="p" variant="muted">
-        {description}
-      </Text>
+        <Text as="p" variant="muted">
+          {description}
+        </Text>
+      </div>
 
-      <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 mt-12">
+      <div className="w-full grid md:grid-cols-2 gap-4 mb-8 mt-12">
         <ProjectList projects={projects} />
       </div>
     </section>
