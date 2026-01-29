@@ -1,6 +1,7 @@
 import { socialLinks } from "@/data/sociaLinks";
 import { getIconByKey } from "@/utils/getIconsByKey";
 import Link from "next/link";
+import { LuExternalLink } from "react-icons/lu";
 
 const SocialLinks = () => {
   if (!socialLinks || socialLinks?.length < 1) null;
@@ -49,6 +50,16 @@ const SocialLinks = () => {
                 {link?.handle}
               </div>
             </div>
+
+            <LuExternalLink
+              className="
+                h-5 w-5 mr-2
+                text-muted-foreground
+                transition-colors
+                group-hover:text-black
+                dark:group-hover:text-white
+              "
+            />
           </Link>
         );
       })}
