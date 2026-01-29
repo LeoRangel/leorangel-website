@@ -2,7 +2,6 @@ import { print } from "graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Post, PostConnection } from "@/gql/graphql";
 import { LatestPostsQuery } from "@queries/posts/LatestPostsQuery";
-import { Container } from "@atoms/Container";
 import { Heading } from "@atoms/Heading";
 import { Text } from "@atoms/Text";
 import { PostList } from "@organisms/PostList";
@@ -35,8 +34,8 @@ const LatestPostsHome = async ({
   if (!posts || posts?.length < 1) null;
 
   return (
-    <section id="blog" className="py-20 px-6 bg-gray-50 dark:bg-gray-900">
-      <Container variant="narrowConstrainedPadded">
+    <section id="blog">
+      <div className="mb-8">
         <Heading
           as="h2"
           weight="extrabold"
@@ -48,11 +47,11 @@ const LatestPostsHome = async ({
         <Text as="p" variant="muted">
           {description}
         </Text>
+      </div>
 
-        <div className="w-full grid gap-4 mt-12">
-          <PostList posts={posts} />
-        </div>
-      </Container>
+      <div className="w-full grid gap-4">
+        <PostList posts={posts} />
+      </div>
     </section>
   );
 };
