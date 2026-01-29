@@ -1,11 +1,10 @@
 import { socialLinks } from "@/data/sociaLinks";
-import { getIconByKey } from "@/utils/getIconsByKey";
 import { Heading } from "@atoms/Heading";
 import { Text } from "@atoms/Text";
 import { Button } from "@ui/button";
 import { Separator } from "@ui/separator";
 import Link from "next/link";
-import { SocialLinks } from "./components/SocialLinks";
+import { SocialLinks } from "../../../organisms/SocialLinks";
 
 const ContactSection = () => {
   const email = socialLinks?.find((item) => item.name === "E-mail");
@@ -27,7 +26,9 @@ const ContactSection = () => {
         </Text>
       </div>
 
-      <SocialLinks />
+      <div className="flex flex-col gap-2">
+        <SocialLinks />
+      </div>
 
       {email && (
         <>

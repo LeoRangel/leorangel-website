@@ -6,7 +6,7 @@ const SocialLinks = () => {
   if (!socialLinks || socialLinks?.length < 1) null;
 
   return (
-    <div className="flex flex-col gap-2">
+    <>
       {socialLinks.map((link) => {
         const Icon = getIconByKey(link?.iconKey);
         if (!Icon) return null;
@@ -52,7 +52,7 @@ const SocialLinks = () => {
           </Link>
         );
       })}
-    </div>
+    </>
   );
 };
 
