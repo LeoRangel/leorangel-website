@@ -2,8 +2,8 @@ import { print } from "graphql/language/printer";
 import { ContentNode, Page } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Container } from "@atoms/Container";
-import { LatestPostsHome } from "./components/LatestPostsHome";
-import { PinnedProjects } from "./components/PinnedProjects";
+import { LatestPostsSection } from "./components/LatestPostsSection";
+import { PinnedProjectsSection } from "./components/PinnedProjectsSection";
 import { HomePageQuery } from "@queries/page/HomePageQuery";
 import { AboutSection } from "./components/AboutSection";
 import { ProfileCard } from "./components/ProfileCard";
@@ -34,12 +34,18 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
               Artigos sobre front-end e engenharia web
             </h1>
 
-            <LatestPostsHome id={SECTIONS.blog.id} className="scroll-mt-12" />
-            <PinnedProjects
+            <LatestPostsSection
+              id={SECTIONS.blog.id}
+              className="scroll-mt-12"
+            />
+
+            <PinnedProjectsSection
               id={SECTIONS.projetos.id}
               className="scroll-mt-12"
             />
+
             <AboutSection id={SECTIONS.sobre.id} className="scroll-mt-12" />
+
             <ContactSection id={SECTIONS.contato.id} className="scroll-mt-12" />
 
             {page && (

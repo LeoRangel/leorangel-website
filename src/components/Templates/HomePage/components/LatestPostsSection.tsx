@@ -20,19 +20,19 @@ async function getData(): Promise<Post[]> {
   }
 }
 
-interface LatestPostsHomeProps {
+interface LatestPostsSectionProps {
   id?: string;
   className?: string;
   heading?: string;
   description?: string;
 }
 
-const LatestPostsHome = async ({
+const LatestPostsSection = async ({
   id,
   className,
   heading = "Últimos posts",
   description = "Compartilhando alguns aprendizados e experiências reais do dia a dia",
-}: LatestPostsHomeProps) => {
+}: LatestPostsSectionProps) => {
   const posts = await getData();
 
   if (!posts || posts?.length < 1) null;
@@ -60,4 +60,4 @@ const LatestPostsHome = async ({
   );
 };
 
-export { LatestPostsHome };
+export { LatestPostsSection };

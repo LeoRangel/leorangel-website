@@ -20,19 +20,19 @@ async function getData(): Promise<Project[]> {
   }
 }
 
-interface PinnedProjectsProps {
+interface PinnedProjectsSectionProps {
   id?: string;
   className?: string;
   heading?: string;
   description?: string;
 }
 
-const PinnedProjects = async ({
+const PinnedProjectsSection = async ({
   id,
   className,
   heading = "Projetos em destaque",
   description = "Alguns projetos open source que estou trabalhando",
-}: PinnedProjectsProps) => {
+}: PinnedProjectsSectionProps) => {
   const projects = await getData();
 
   if (!projects || projects?.length < 1) null;
@@ -60,4 +60,4 @@ const PinnedProjects = async ({
   );
 };
 
-export { PinnedProjects };
+export { PinnedProjectsSection };
