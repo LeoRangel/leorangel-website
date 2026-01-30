@@ -1,5 +1,6 @@
 import { socialLinks } from "@/data/sociaLinks";
 import { getIconByKey } from "@/utils/getIconsByKey";
+import { Text } from "@atoms/Text";
 import Link from "next/link";
 import { LuExternalLink } from "react-icons/lu";
 
@@ -24,6 +25,7 @@ const SocialLinks = () => {
               border-border
               transition-all
               hover:shadow-md
+              hover:border-highlight
             "
           >
             <div
@@ -45,10 +47,21 @@ const SocialLinks = () => {
             </div>
 
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium">{link?.name}</div>
-              <div className="truncate text-xs text-muted-foreground">
+              <Text
+                size="sm"
+                weight="medium"
+                className="mb-0 group-hover:text-highlight"
+              >
+                {link?.name}
+              </Text>
+
+              <Text
+                size="xs"
+                weight="medium"
+                className="mb-0 truncate text-muted-foreground"
+              >
                 {link?.handle}
-              </div>
+              </Text>
             </div>
 
             <LuExternalLink
