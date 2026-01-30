@@ -20,19 +20,19 @@ export const profileInfo: ProfileInfoType = {
   role: "Software Engineer",
   bio: {
     short:
-      "Normalmente estou desenhando ou construindo apps modernos com foco em performance, acessibilidade e escalabilidade — e, de vez em quando, compartilho ideias e alguns conteúdos técnicos por aqui. ☕️",
+      "Normalmente desenho e construo apps modernos — e, de vez em quando, compartilho algumas ideias e conteúdos técnicos por aqui. 👨‍🚀🛸",
     long: "Desenvolvo aplicações web com foco em frontend, lidando com desafios reais de escala, performance, acessibilidade, UX e SEO. Gosto de pensar em soluções simples e bem estruturadas, participar de decisões técnicas e trabalhar de forma colaborativa com times multidisciplinares. No dia a dia, gosto de explorar novas ideias, experimentar ferramentas e abordagens diferentes e compartilhar aprendizados práticos que surgem enquanto construo coisas e resolvo problemas na web.",
   },
   stacks: {
     favorite: [
+      "JavaScript",
+      "Performance",
       "React",
       "Next.js",
-      "JavaScript",
       "TypeScript",
       "SEO",
       "UX",
       "Acessibilidade",
-      "Performance",
     ],
     full: [
       "JavaScript",
