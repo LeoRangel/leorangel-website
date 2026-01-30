@@ -1,10 +1,5 @@
 import { print } from "graphql/language/printer";
-import {
-  ContentNode,
-  MenuItem,
-  Page,
-  RootQueryToMenuItemConnection,
-} from "@/gql/graphql";
+import { ContentNode, Page } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Container } from "@atoms/Container";
 import { LatestPostsSection } from "./components/LatestPostsSection";
@@ -13,56 +8,12 @@ import { HomePageQuery } from "@queries/page/HomePageQuery";
 import { AboutSection } from "./components/AboutSection";
 import { SectionNav } from "./components/SectionNav";
 import { ContactSection } from "./components/ContactSection";
-import { SECTIONS } from "./sections";
-import { MenuQuery } from "@queries/menu/MenuQuery";
-import { defaultNavigationMenu } from "@/data/navigation";
+import { homeSectionMenu, SECTIONS } from "./sections";
 import { Aside } from "@organisms/Aside/Aside";
+import { getMenu } from "@services/navigation/getMenu";
 
 interface TemplateProps {
   node: ContentNode | null;
-}
-
-const homePageNavMenu = [
-  { uri: "#blog", target: null, label: "#blog" },
-  { uri: "#projetos", target: null, label: "#projetos" },
-  { uri: "#sobre", target: null, label: "#sobre" },
-  { uri: "#contato", target: null, label: "#contato" },
-];
-
-async function getData(): Promise<MenuItem[]> {
-  try {
-    const { menuItems } = await fetchGraphQL<{
-      menuItems: RootQueryToMenuItemConnection;
-    }>(print(MenuQuery));
-
-    if (!menuItems?.nodes?.length) {
-      console.info("No menu items found. Using default menu.");
-
-      const menuItemsDefault = [
-        ...defaultNavigationMenu.nodes,
-        ...homePageNavMenu,
-      ] as MenuItem[];
-
-      return menuItemsDefault;
-    }
-
-    const menuItemsDynamic = [
-      ...menuItems.nodes,
-      ...homePageNavMenu,
-    ] as MenuItem[];
-
-    return menuItemsDynamic;
-  } catch (error) {
-    console.info("Error fetching menu: ", error);
-    console.info("Using default menu.");
-
-    const menuItemsDefault = [
-      ...defaultNavigationMenu.nodes,
-      ...homePageNavMenu,
-    ] as MenuItem[];
-
-    return menuItemsDefault;
-  }
 }
 
 export default async function HomePageTemplate({ node }: TemplateProps) {
@@ -70,7 +21,9 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
     print(HomePageQuery),
     { id: node?.databaseId },
   );
-  const menuItems = await getData();
+  const menuItems = await getMenu({
+    extraItems: homeSectionMenu,
+  });
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
