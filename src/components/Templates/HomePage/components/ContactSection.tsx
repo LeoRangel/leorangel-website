@@ -6,13 +6,18 @@ import { Separator } from "@ui/separator";
 import Link from "next/link";
 import { SocialLinks } from "@organisms/SocialLinks";
 
-const ContactSection = () => {
+interface ContactSectionProps {
+  id?: string;
+  className?: string;
+}
+
+const ContactSection = ({ id, className }: ContactSectionProps) => {
   const email = socialLinks?.find((item) => item.name === "E-mail");
 
   if (!socialLinks || socialLinks?.length < 1) null;
 
   return (
-    <section id="contact">
+    <section id={id} className={className}>
       <div>
         <Heading
           as="h2"

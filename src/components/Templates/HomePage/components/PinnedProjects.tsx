@@ -21,11 +21,15 @@ async function getData(): Promise<Project[]> {
 }
 
 interface PinnedProjectsProps {
+  id?: string;
+  className?: string;
   heading?: string;
   description?: string;
 }
 
 const PinnedProjects = async ({
+  id,
+  className,
   heading = "Projetos em destaque",
   description = "Alguns projetos open source que estou trabalhando",
 }: PinnedProjectsProps) => {
@@ -34,7 +38,7 @@ const PinnedProjects = async ({
   if (!projects || projects?.length < 1) null;
 
   return (
-    <section id="projects">
+    <section id={id} className={className}>
       <div>
         <Heading
           as="h2"

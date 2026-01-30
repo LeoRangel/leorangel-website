@@ -21,11 +21,15 @@ async function getData(): Promise<Post[]> {
 }
 
 interface LatestPostsHomeProps {
+  id?: string;
+  className?: string;
   heading?: string;
   description?: string;
 }
 
 const LatestPostsHome = async ({
+  id,
+  className,
   heading = "Últimos posts",
   description = "Compartilhando alguns aprendizados e experiências reais do dia a dia",
 }: LatestPostsHomeProps) => {
@@ -34,7 +38,7 @@ const LatestPostsHome = async ({
   if (!posts || posts?.length < 1) null;
 
   return (
-    <section id="blog">
+    <section id={id} className={className}>
       <div className="mb-8">
         <Heading
           as="h2"

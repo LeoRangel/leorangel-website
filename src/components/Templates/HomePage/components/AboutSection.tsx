@@ -3,9 +3,14 @@ import { Heading } from "@atoms/Heading";
 import { Text } from "@atoms/Text";
 import { Badge } from "@ui/badge";
 
-const AboutSection = () => {
+interface AboutSectionProps {
+  id?: string;
+  className?: string;
+}
+
+const AboutSection = ({ id, className }: AboutSectionProps) => {
   return (
-    <section id="about">
+    <section id={id} className={className}>
       <div>
         <Heading
           as="h2"
