@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { MenuItem } from "@/gql/graphql";
+import { ThemeToggle } from "@molecules/ThemeToggle";
 import { Avatar, AvatarFallback, AvatarImage } from "@ui/avatar";
 import {
   Sheet,
@@ -13,7 +14,6 @@ import {
 import { Button } from "@ui/button";
 import { LuMenu } from "react-icons/lu";
 import { Text } from "@/components/atoms/Text";
-import { ThemeSwitch } from "@molecules/ThemeSwitch";
 
 interface NavigationClientProps {
   menuItems: MenuItem[];
@@ -56,7 +56,7 @@ export default function NavigationClient({ menuItems }: NavigationClientProps) {
 
   return (
     <div className="flex items-center justify-between w-full">
-      <div className="flex flex-row items-center gap-4">
+      <div className="flex flex-row items-center gap-8">
         {MyLogo()}
         <div className="flex flex-col">
           <Text as="span">Leandro Rangel</Text>
@@ -69,7 +69,7 @@ export default function NavigationClient({ menuItems }: NavigationClientProps) {
       <div className="flex items-center gap-2">
         <div className="hidden md:flex items-center gap-4">
           {MenuItems}
-          <ThemeSwitch />
+          <ThemeToggle />
         </div>
 
         <div className="md:hidden">
