@@ -7,7 +7,7 @@ import { PinnedProjectsSection } from "./components/PinnedProjectsSection";
 import { HomePageQuery } from "@queries/page/HomePageQuery";
 import { AboutSection } from "./components/AboutSection";
 import { ProfileCard } from "./components/ProfileCard";
-import { SectionTrail } from "./components/SectionTrail";
+import { SectionNav } from "./components/SectionNav";
 import { ContactSection } from "./components/ContactSection";
 import { SECTIONS } from "./sections";
 
@@ -55,7 +55,7 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
             )}
           </main>
 
-          <SectionTrail sections={Object.values(SECTIONS)} />
+          <SectionNav sections={Object.values(SECTIONS)} />
         </div>
       </Container>
     </div>

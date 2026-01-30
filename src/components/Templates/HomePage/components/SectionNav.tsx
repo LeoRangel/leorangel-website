@@ -8,11 +8,11 @@ type Section = {
   label: string;
 };
 
-interface SectionTrailProps {
+interface SectionNavProps {
   sections: Section[];
 }
 
-export function SectionTrail({ sections }: SectionTrailProps) {
+export function SectionNav({ sections }: SectionNavProps) {
   const [active, setActive] = useState(sections[0]?.id);
 
   useEffect(() => {
