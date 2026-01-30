@@ -50,7 +50,7 @@ const ContactSection = ({ id, className }: ContactSectionProps) => {
               className="w-full px-4 py-3 rounded-lg transition-colors no-underline"
             >
               <Link
-                href={email?.href || ""}
+                href={`${email?.href}?subject=Vamos%20conversar!&body=Oi%20%F0%9F%91%8B%0A%0AVi%20seu%20site%20e%20quis%20entrar%20em%20contato.%0A%0AAbra%C3%A7os!`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
