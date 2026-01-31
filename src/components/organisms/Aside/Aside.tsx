@@ -40,7 +40,7 @@ const Aside = ({ isHomePage, className }: AsideProps) => {
 
         <FavoriteTopicsCard />
 
-        <div className="hidden md:grid grid-cols-2 gap-3">
+        <div className="hidden lg:grid grid-cols-2 gap-3">
           <SocialCard />
           <ThemeCard />
         </div>

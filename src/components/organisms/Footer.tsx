@@ -17,7 +17,7 @@ export default async function Footer() {
           {menuItems && menuItems?.length > 0 && (
             <nav
               aria-label="Navegação de links úteis"
-              className="flex justify-center items-center"
+              className="flex flex-wrap justify-center items-center"
             >
               <Text as="span" size="xs" variant="muted" className="mr-4">
                 Links úteis:
