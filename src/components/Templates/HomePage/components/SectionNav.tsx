@@ -10,9 +10,10 @@ type Section = {
 
 interface SectionNavProps {
   sections: Section[];
+  className?: string;
 }
 
-export function SectionNav({ sections }: SectionNavProps) {
+export function SectionNav({ sections, className }: SectionNavProps) {
   const [active, setActive] = useState(sections[0]?.id);
 
   useEffect(() => {
@@ -37,25 +38,27 @@ export function SectionNav({ sections }: SectionNavProps) {
     });
 
     return () => observers.forEach((o) => o.disconnect());
-  }, []);
+  }, [sections]);
 
   const activeIndex = sections.findIndex((s) => s.id === active);
   const progress =
-    sections.length > 1 ? (activeIndex / (sections.length - 1)) * 100 : 0;
+    sections.length > 1 ? activeIndex / (sections.length - 1) : 0;
 
   return (
     <nav
       aria-label="Section navigation"
-      className="sticky top-0 hidden lg:flex h-[100vh] items-center"
+      className={cn("sticky h-[100vh] top-0", className)}
     >
-      <div className="relative flex h-full flex-col justify-between py-6 px-2">
+      <div className="relative flex h-full flex-col justify-between py-12 px-2">
         {/* base track */}
-        <span className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-border" />
+        <span className="absolute left-1/2 top-12 h-[calc(100%-6rem)] w-px -translate-x-1/2 bg-border" />
 
         {/* progress track */}
         <span
-          className="absolute left-1/2 top-0 w-px -translate-x-1/2 bg-foreground/20 transition-all duration-300"
-          style={{ height: `${progress}%` }}
+          className="absolute left-1/2 top-12 w-px -translate-x-1/2 bg-foreground/20 transition-all duration-300"
+          style={{
+            height: `calc((100% - 6rem) * ${progress})`,
+          }}
         />
 
         {sections.map((section) => {
@@ -86,13 +89,14 @@ export function SectionNav({ sections }: SectionNavProps) {
 
               {/* tooltip */}
               <span
-                className="
-                  pointer-events-none absolute left-6 top-1/2 -translate-y-1/2
-                  whitespace-nowrap rounded-md bg-popover px-2 py-1 text-xs
-                  text-popover-foreground opacity-0 shadow
-                  transition
-                  group-hover:opacity-100
-                "
+                className={`
+                  pointer-events-none absolute left-6 top-1/2
+                  -translate-y-1/2 whitespace-nowrap
+                  rounded-md bg-popover px-2 py-1
+                  text-xs text-popover-foreground
+                  shadow transition-all duration-200
+                  opacity-0 translate-x-1 group-hover:opacity-100 group-hover:translate-x-0
+                `}
               >
                 {section.label}
               </span>
