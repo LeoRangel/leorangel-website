@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@ui/button";
 import { ThemeToggle } from "@molecules/ThemeToggle";
+import { useActiveSection } from "@/hooks/useActiveSection";
 
 type Section = {
   id: string;
@@ -20,31 +20,7 @@ export default function SectionNavBar({
   sections,
   className,
 }: SectionNavBarProps) {
-  const [active, setActive] = useState(sections[0]?.id);
-
-  useEffect(() => {
-    const observers: IntersectionObserver[] = [];
-
-    sections.forEach((section) => {
-      const el = document.getElementById(section.id);
-      if (!el) return;
-
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActive(section.id);
-            history.replaceState(null, "", `#${section.id}`);
-          }
-        },
-        { rootMargin: "-45% 0px -45% 0px" },
-      );
-
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach((o) => o.disconnect());
-  }, [sections]);
+  const { active } = useActiveSection(sections);
 
   return (
     <nav
