@@ -30,11 +30,7 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-[320px_1fr_auto]">
           <Aside
             isHomePage
-            className="
-              mt-4 md:mt-6 lg:mt-0
-              lg:sticky lg:top-12
-              h-fit
-            "
+            className="mt-4 md:mt-6 lg:mt-12 lg:sticky lg:top-12 h-fit"
           />
 
           <main className="space-y-12 lg:space-y-24 pb-12 lg:py-12">
