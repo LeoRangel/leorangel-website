@@ -1,6 +1,6 @@
 export const defaultNavigationMenu = {
   nodes: [
-    { uri: "/", target: null, label: "/home" },
-    { uri: "/posts/", target: null, label: "/posts" },
+    { uri: "/", target: null, label: "Home" },
+    { uri: "/posts/", target: null, label: "Posts" },
   ],
 };

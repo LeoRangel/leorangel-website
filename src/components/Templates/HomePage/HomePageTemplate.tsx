@@ -20,9 +20,6 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
     print(HomePageQuery),
     { id: node?.databaseId },
   );
-  // const menuItems = await getMenu({
-  //   extraItems: homeSectionMenu,
-  // });
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
