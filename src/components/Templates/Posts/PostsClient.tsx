@@ -25,7 +25,7 @@ export default function PostsClient({
 
   return (
     <>
-      <section className="mb-8 grid grid-cols-1">
+      <div className="mb-8 flex flex-col space-y-4">
         {posts.map((post) => (
           <PostCardHorizontal
             key={`post-card-${post.id}`}
@@ -42,7 +42,7 @@ export default function PostsClient({
           Array.from({ length: 2 }).map((_, idx) => (
             <PostCardHorizontalSkeleton key={`post-card-skeleton-${idx}`} />
           ))}
-      </section>
+      </div>
 
       <div ref={loaderRef} className="flex justify-center items-center mt-12">
         {!hasMore && <Text as="span">End of posts</Text>}
