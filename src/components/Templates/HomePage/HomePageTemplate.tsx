@@ -8,9 +8,8 @@ import { HomePageQuery } from "@queries/page/HomePageQuery";
 import { AboutSection } from "./components/AboutSection";
 import { SectionNav } from "./components/SectionNav";
 import { ContactSection } from "./components/ContactSection";
-import { homeSectionMenu, SECTIONS } from "./sections";
 import { Aside } from "@organisms/Aside/Aside";
-import { getMenu } from "@services/navigation/getMenu";
+import { SECTIONS } from "./sections";
 
 interface TemplateProps {
   node: ContentNode | null;
@@ -21,43 +20,59 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
     print(HomePageQuery),
     { id: node?.databaseId },
   );
-  const menuItems = await getMenu({
-    extraItems: homeSectionMenu,
-  });
+  // const menuItems = await getMenu({
+  //   extraItems: homeSectionMenu,
+  // });
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <Container variant="fullMobileConstrainedPadded">
-        <div className="grid grid-cols-1 gap-12 py-12 lg:grid-cols-[320px_1fr_auto]">
-          <Aside menuItems={menuItems} className="md:sticky md:top-12 h-fit" />
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[320px_1fr_auto]">
+          <Aside
+            isHomePage
+            className="
+              mt-4 md:mt-6 lg:mt-0
+              lg:sticky lg:top-12
+              h-fit
+            "
+          />
 
-          <main className="space-y-24">
+          <main className="space-y-12 lg:space-y-24 pb-12 lg:py-12">
             <h1 className="sr-only">
               Artigos sobre front-end e engenharia web
             </h1>
 
             <LatestPostsSection
               id={SECTIONS.blog.id}
-              className="scroll-mt-12"
+              className="scroll-mt-20 lg:scroll-mt-12"
             />
 
             <PinnedProjectsSection
               id={SECTIONS.projetos.id}
-              className="scroll-mt-12"
+              className="scroll-mt-20 lg:scroll-mt-12"
             />
 
-            <AboutSection id={SECTIONS.sobre.id} className="scroll-mt-12" />
+            <AboutSection
+              id={SECTIONS.sobre.id}
+              className="scroll-mt-20 lg:scroll-mt-12"
+            />
 
-            <ContactSection id={SECTIONS.contato.id} className="scroll-mt-12" />
+            <ContactSection
+              id={SECTIONS.contato.id}
+              className="scroll-mt-20 lg:scroll-mt-12"
+            />
 
             {page && (
-              <section className="scroll-mt-12">
+              <section className="scroll-mt-20 lg:scroll-mt-12">
                 <div dangerouslySetInnerHTML={{ __html: page.content || "" }} />
               </section>
             )}
           </main>
 
-          <SectionNav sections={Object.values(SECTIONS)} />
+          <SectionNav
+            sections={Object.values(SECTIONS)}
+            className="hidden lg:flex"
+          />
         </div>
       </Container>
     </div>
