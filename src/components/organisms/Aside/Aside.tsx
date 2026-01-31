@@ -3,6 +3,7 @@ import { ProfileInfoCard } from "./components/ProfileInfoCard";
 import { SocialCard } from "./components/SocialCard";
 import { SECTIONS } from "@templates/HomePage/sections";
 import dynamic from "next/dynamic";
+import { FavoriteTopicsCard } from "./components/FavoriteTopicsCard";
 
 const SectionNavBarDynamic = dynamic(() => import("../SectionNavBar"));
 
@@ -36,6 +37,8 @@ const Aside = ({ isHomePage, className }: AsideProps) => {
         </div>
 
         <ProfileInfoCard />
+
+        <FavoriteTopicsCard />
 
         <div className="hidden md:grid grid-cols-2 gap-3">
           <SocialCard />
