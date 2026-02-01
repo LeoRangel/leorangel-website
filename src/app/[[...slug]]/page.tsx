@@ -10,6 +10,8 @@ import { SeoQuery } from "@queries/general/SeoQuery";
 import PageTemplate from "@templates/Page/PageTemplate";
 import PostTemplate from "@templates/Post/PostTemplate";
 import HomePageTemplate from "@templates/HomePage/HomePageTemplate";
+import { HOME_DEFAULT_SEO } from "@/data/seo";
+import { mergeMetadata } from "@/lib/seo/mergeMetadata";
 
 type Props = {
   params: { slug: string };
@@ -18,12 +20,12 @@ type Props = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const slug = nextSlugToWpSlug(params?.slug || "");
   const isPreview = slug?.includes("preview");
-  const isHomePage = slug === "/";
+  const isHomePage = slug === "/" || slug === "";
 
   const { contentNode } = await fetchGraphQL<{
     contentNode: ContentNode | null;
   }>(print(SeoQuery), {
-    slug: isPreview ? slug?.split("preview/")[1] : slug,
+    slug: isPreview ? slug.split("preview/")[1] : isHomePage ? "/" : slug,
     idType: isPreview ? "DATABASE_ID" : "URI",
   });
 
@@ -31,14 +33,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return notFound();
   }
 
-  const metadata = setSeoData({ seo: contentNode?.seo });
+  const cmsMetadata = setSeoData({
+    seo: contentNode?.seo,
+    contentTypeName: contentNode?.contentTypeName,
+  });
 
-  return {
-    ...metadata,
+  if (isHomePage) {
+    return mergeMetadata(HOME_DEFAULT_SEO, cmsMetadata);
+  }
+
+  return mergeMetadata(cmsMetadata, {
     alternates: {
       canonical: `${process.env.NEXT_PUBLIC_BASE_URL}/${slug}`,
     },
-  } as Metadata;
+  });
 }
 
 export function generateStaticParams() {
@@ -48,11 +56,12 @@ export function generateStaticParams() {
 export default async function Page({ params }: Props) {
   const slug = nextSlugToWpSlug(params?.slug);
   const isPreview = slug?.includes("preview");
-  const isHomePage = slug === "/";
+  const isHomePage = slug === "/" || slug === "";
+
   const { contentNode } = await fetchGraphQL<{
     contentNode: ContentNode | null;
   }>(print(ContentInfoQuery), {
-    slug: isPreview ? slug?.split("preview/")[1] : slug,
+    slug: isPreview ? slug?.split("preview/")[1] : isHomePage ? "/" : slug,
     idType: isPreview ? "DATABASE_ID" : "URI",
   });
 

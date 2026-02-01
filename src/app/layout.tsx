@@ -6,6 +6,7 @@ import "@/app/globals.css";
 import { PreviewNotice } from "@molecules/PreviewNotice/PreviewNotice";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Footer from "@organisms/Footer";
+import { siteInfo } from "@/data/siteInfo";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export default async function RootLayout({
   const { isEnabled } = await draftMode();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={siteInfo.language} suppressHydrationWarning>
       <body
         className={`prose prose-neutral dark:prose-invert max-w-none ${inter.className}`}
       >

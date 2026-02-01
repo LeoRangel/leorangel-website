@@ -29,7 +29,7 @@ const AboutSection = ({ id, className }: AboutSectionProps) => {
         {profileInfo?.bio?.long}
       </Text>
 
-      {profileInfo?.stacks?.full?.length > 0 && (
+      {profileInfo?.stack?.length > 0 && (
         <div className="mt-8">
           <Heading as="h3" weight="extrabold" className="text-1xl mb-4">
             Tech Stack
@@ -39,7 +39,7 @@ const AboutSection = ({ id, className }: AboutSectionProps) => {
               className="not-prose list-none flex items-center flex-wrap gap-2 m-0 p-0"
               aria-label="Minhas habilidades"
             >
-              {profileInfo?.stacks?.full?.map((skill, index) => (
+              {profileInfo?.stack?.map((skill, index) => (
                 <li className="flex" key={`about-skill-item-${index}`}>
                   <Badge variant="secondary">
                     <span className="sr-only">Habilidades:</span> {skill}
