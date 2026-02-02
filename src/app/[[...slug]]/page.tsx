@@ -13,15 +13,15 @@ import HomePageTemplate from "@templates/HomePage/HomePageTemplate";
 import { HOME_DEFAULT_SEO } from "@/data/seo";
 import { mergeMetadata } from "@/lib/seo/mergeMetadata";
 
-type Props = {
-  params: { slug: string };
-};
+export interface Props {
+  params: Promise<{ slug: string }>;
+}
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
   const slug = nextSlugToWpSlug(resolvedParams?.slug);
   const isPreview = slug?.includes("preview");
-  const isHomePage = slug === "/" || slug === "";
+  const isHomePage = slug === "" || slug === "/";
 
   const { contentNode } = await fetchGraphQL<{
     contentNode: ContentNode | null;
@@ -58,7 +58,7 @@ export default async function Page({ params }: Props) {
   const resolvedParams = await params;
   const slug = nextSlugToWpSlug(resolvedParams?.slug);
   const isPreview = slug?.includes("preview");
-  const isHomePage = slug === "/" || slug === "";
+  const isHomePage = slug === "" || slug === "/";
 
   const { contentNode } = await fetchGraphQL<{
     contentNode: ContentNode | null;
