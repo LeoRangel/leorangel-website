@@ -10,6 +10,7 @@ import { SectionNav } from "./components/SectionNav";
 import { ContactSection } from "./components/ContactSection";
 import { Aside } from "@organisms/Aside/Aside";
 import { SECTIONS } from "./sections";
+import { homeContent } from "@/data/pages-content/home";
 
 interface TemplateProps {
   node: ContentNode | null;
@@ -31,9 +32,7 @@ export default async function HomePageTemplate({ node }: TemplateProps) {
           />
 
           <main className="space-y-12 lg:space-y-24 pb-12 lg:py-12">
-            <h1 className="sr-only">
-              Artigos sobre front-end e engenharia web
-            </h1>
+            <h1 className="sr-only">{homeContent.pageTitle}</h1>
 
             <LatestPostsSection
               id={SECTIONS.blog.id}

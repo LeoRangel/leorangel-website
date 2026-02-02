@@ -4,7 +4,7 @@ import { Badge } from "@ui/badge";
 import { profileInfo } from "@/data/profileInfo";
 
 const FavoriteTopicsCard = () => {
-  if (profileInfo.stacks?.favorite?.length < 1) return null;
+  if (profileInfo.favoriteTopics?.length < 1) return null;
 
   return (
     <Card className="gap-4">
@@ -17,7 +17,7 @@ const FavoriteTopicsCard = () => {
           </CardTitle>
 
           <ul className="not-prose list-none flex flex-wrap justify-center gap-2 m-0 p-0">
-            {profileInfo.stacks.favorite.map((skill) => (
+            {profileInfo?.favoriteTopics?.map((skill) => (
               <li key={skill}>
                 <Badge variant="secondary">{skill}</Badge>
               </li>

@@ -7,6 +7,7 @@ export const SeoQuery = gql`
     $preview: Boolean = false
   ) {
     contentNode(id: $slug, idType: $idType, asPreview: $preview) {
+      contentTypeName
       seo {
         canonical
         cornerstone

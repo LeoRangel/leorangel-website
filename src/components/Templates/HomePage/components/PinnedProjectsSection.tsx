@@ -5,6 +5,7 @@ import { ProjectsQuery } from "@queries/projects/ProjectsQuery";
 import { Heading } from "@atoms/Heading";
 import { Text } from "@atoms/Text";
 import { ProjectList } from "@organisms/ProjectList";
+import { homeContent } from "@/data/pages-content/home";
 
 async function getData(): Promise<Project[]> {
   try {
@@ -23,15 +24,11 @@ async function getData(): Promise<Project[]> {
 interface PinnedProjectsSectionProps {
   id?: string;
   className?: string;
-  heading?: string;
-  description?: string;
 }
 
 const PinnedProjectsSection = async ({
   id,
   className,
-  heading = "Projetos em destaque",
-  description = "Alguns projetos open source que estou trabalhando",
 }: PinnedProjectsSectionProps) => {
   const projects = await getData();
 
@@ -45,11 +42,11 @@ const PinnedProjectsSection = async ({
           weight="extrabold"
           className="text-1xl md:text-4xl mb-4"
         >
-          {heading}
+          {homeContent.sections.featuredProjects.title}
         </Heading>
 
         <Text as="p" variant="muted">
-          {description}
+          {homeContent.sections.featuredProjects.description}
         </Text>
       </div>
 

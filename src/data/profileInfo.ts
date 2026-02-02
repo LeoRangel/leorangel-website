@@ -5,9 +5,10 @@ export interface ProfileInfoType {
     short: string;
     long: string;
   };
-  stacks: {
-    favorite: string[];
-    full: string[];
+  favoriteTopics: string[];
+  skills: {
+    primary: string[];
+    secondary: string[];
   };
   avatar: {
     src: string;
@@ -18,50 +19,70 @@ export interface ProfileInfoType {
 export const profileInfo: ProfileInfoType = {
   name: "Leandro Rangel",
   role: "Software Engineer",
+
   bio: {
     short:
-      "Desenho e construo apps modernos — e, de vez em quando, compartilho algumas ideias e conteúdos técnicos por aqui. 👨‍🚀🛸",
-    long: "Desenvolvo aplicações web com foco em frontend, lidando com desafios reais de escala, performance, acessibilidade, UX e SEO. Gosto de pensar em soluções simples e bem estruturadas, participar de decisões técnicas e trabalhar de forma colaborativa com times multidisciplinares. No dia a dia, gosto de explorar novas ideias, experimentar ferramentas e abordagens diferentes e compartilhar aprendizados práticos que surgem enquanto construo coisas e resolvo problemas na web.",
+      "Desenho e construo apps — e, de vez em quando, compartilho ideias e aprendizados técnicos por aqui. 👨‍🚀🛸",
+    long: "Sou desenvolvedor e trabalho principalmente com frontend, criando aplicações web no dia a dia. Gosto de pensar em soluções simples, bem organizadas e que funcionem de verdade para quem está usando.\n\nTenho interesse especial por performance, acessibilidade e experiência do usuário — principalmente nos detalhes que fazem um produto ser melhor no uso real. Além da stack principal, costumo explorar outras tecnologias, testar ferramentas novas e sair um pouco da zona de conforto.\n\nEste site é um espaço onde compartilho aprendizados, organizo ideias e escrevo sobre coisas que vou descobrindo enquanto construo projetos e resolvo problemas.",
   },
-  stacks: {
-    favorite: [
+
+  favoriteTopics: [
+    "Frontend",
+    "JavaScript",
+    "React",
+    "Web Performance",
+    "Acessibilidade",
+    "Next.js",
+    "TypeScript",
+    "SEO",
+    "UX",
+  ],
+
+  skills: {
+    primary: [
       "JavaScript",
-      "Performance",
+      "TypeScript",
       "React",
       "Next.js",
-      "TypeScript",
+      "Web Performance",
       "SEO",
-      "UX",
       "Acessibilidade",
-    ],
-    full: [
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Next.js",
-      "Vue.js",
+      "Core Web Vitals",
+      "Git",
       "HTML",
       "CSS",
-      "SCSS",
-      "Tailwind CSS",
-      "Design Systems",
-      "Microfrontend",
       "Redux",
-      "Server-Side Rendering (SSR)",
-      "Static Site Generation (SSG)",
-      "REST APIs",
-      "GraphQL",
-      "SEO",
-      "Web Performance",
-      "Core Web Vitals",
-      "Jest",
       "Storybook",
-      "Git",
-      "CI/CD",
-      "AWS",
+      "Design Systems",
+      "Testes",
+      "CMS",
+      "REST APIs",
+      "SSR",
+      "SSG",
+      "SCSS",
+    ],
+    secondary: [
+      "Strapi",
       "WordPress",
+      "AWS",
+      "CI/CD",
+      "GraphQL",
+      "Docker",
+      "Android",
+      "Tailwind CSS",
+      "Shadcn",
+      "Golang",
+      "PHP",
+      "Vue.js",
+      "Microfrontend",
+      "CSS-IN-JS",
+      "Jest",
+      "Testing Library",
+      "UX",
+      "Figma",
     ],
   },
+
   avatar: {
     src: "https://github.com/leorangel.png",
     alt: "Imagem de Leandro Rangel",

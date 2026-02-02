@@ -40,7 +40,7 @@ const ProjectCard = ({
         title={title}
       >
         <Card
-          className={`rounded-md overflow-hidden h-full gap-4 group hover:shadow-lg hover:border-highlight transition-all`}
+          className={`overflow-hidden h-full gap-4 group hover:shadow-lg hover:border-highlight transition-all`}
         >
           <CardHeader className="relative w-full overflow-hidden gap-0">
             <div className="flex items-start justify-between">

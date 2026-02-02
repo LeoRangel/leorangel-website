@@ -5,6 +5,7 @@ import { Button } from "@ui/button";
 import { Separator } from "@ui/separator";
 import Link from "next/link";
 import { SocialLinks } from "@organisms/SocialLinks";
+import { homeContent } from "@/data/pages-content/home";
 
 interface ContactSectionProps {
   id?: string;
@@ -24,10 +25,10 @@ const ContactSection = ({ id, className }: ContactSectionProps) => {
           weight="extrabold"
           className="text-1xl md:text-4xl mb-4"
         >
-          Contato
+          {homeContent.sections.contact.title}
         </Heading>
         <Text as="p" variant="muted">
-          Conecte-se comigo:
+          {homeContent.sections.contact.description}
         </Text>
       </div>
 

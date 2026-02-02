@@ -1,3 +1,4 @@
+import { homeContent } from "@/data/pages-content/home";
 import { profileInfo } from "@/data/profileInfo";
 import { Heading } from "@atoms/Heading";
 import { Text } from "@atoms/Text";
@@ -17,32 +18,54 @@ const AboutSection = ({ id, className }: AboutSectionProps) => {
           weight="extrabold"
           className="text-1xl md:text-4xl mb-4"
         >
-          About Me
+          {homeContent.sections.about.title}
         </Heading>
 
         <Text as="p" variant="muted">
-          Algumas infos sobre mim
+          {homeContent.sections.about.description}
         </Text>
       </div>
 
-      <Text variant="muted" size="sm" className="leading-relaxed">
+      <Text variant="muted" size="base" className="leading-relaxed">
         {profileInfo?.bio?.long}
       </Text>
 
-      {profileInfo?.stacks?.full?.length > 0 && (
+      {profileInfo?.skills?.primary?.length > 0 && (
         <div className="mt-8">
-          <Heading as="h3" weight="extrabold" className="text-1xl mb-4">
-            Tech Stack
+          <Heading as="h3" weight="bold" className="text-1xl mb-4">
+            {homeContent.sections.about.skills.primary.title}
           </Heading>
           <div className="flex flex-wrap gap-3">
             <ul
               className="not-prose list-none flex items-center flex-wrap gap-2 m-0 p-0"
-              aria-label="Minhas habilidades"
+              aria-label="Principais habilidades em tecnoligas e ferramentas"
             >
-              {profileInfo?.stacks?.full?.map((skill, index) => (
+              {profileInfo?.skills?.primary?.map((skill, index) => (
                 <li className="flex" key={`about-skill-item-${index}`}>
                   <Badge variant="secondary">
-                    <span className="sr-only">Habilidades:</span> {skill}
+                    <span className="sr-only">Habilidade:</span> {skill}
+                  </Badge>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {profileInfo?.skills?.secondary?.length > 0 && (
+        <div className="mt-8">
+          <Heading as="h3" weight="bold" className="text-1xl mb-4">
+            {homeContent.sections.about.skills.secondary.title}
+          </Heading>
+          <div className="flex flex-wrap gap-3">
+            <ul
+              className="not-prose list-none flex items-center flex-wrap gap-2 m-0 p-0"
+              aria-label="Outras habilidades"
+            >
+              {profileInfo?.skills?.secondary?.map((skill, index) => (
+                <li className="flex" key={`about-skill-item-${index}`}>
+                  <Badge variant="secondary">
+                    <span className="sr-only">Habilidade:</span> {skill}
                   </Badge>
                 </li>
               ))}

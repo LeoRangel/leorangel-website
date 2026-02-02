@@ -83,7 +83,7 @@ export default function SectionNavBar({
                     "transition-colors",
                     isActive
                       ? "bg-background text-foreground shadow-sm"
-                      : "text-muted-foreground hover:text-foreground",
+                      : "text-foreground hover:text-foreground",
                   )}
                 >
                   <Link href={`#${section.id}`} className="no-underline">

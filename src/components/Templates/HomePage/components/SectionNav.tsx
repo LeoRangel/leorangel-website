@@ -21,7 +21,7 @@ export function SectionNav({ sections, className }: SectionNavProps) {
 
   return (
     <nav
-      aria-label="Section navigation"
+      aria-label="Navegação por seções da página"
       className={cn("sticky h-[100vh] top-0", className)}
     >
       <div className="relative flex h-full flex-col justify-between py-12 px-2">
