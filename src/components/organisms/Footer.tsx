@@ -5,6 +5,7 @@ import { Button } from "@ui/button";
 import Link from "next/link";
 import { Text } from "@atoms/Text";
 import { getMenu } from "@services/navigation/getMenu";
+import { footerInfo } from "@/data/footer";
 
 export default async function Footer() {
   const menuItems = await getMenu();
@@ -42,7 +43,7 @@ export default async function Footer() {
           )}
 
           <div className="text-center text-sm text-muted-foreground py-4">
-            © {new Date().getFullYear()} - Developed by Leandro Rangel
+            {footerInfo.developerBy}
           </div>
 
           <div className="flex gap-3 justify-center">

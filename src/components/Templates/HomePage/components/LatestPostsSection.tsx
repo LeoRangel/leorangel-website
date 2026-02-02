@@ -5,6 +5,7 @@ import { LatestPostsQuery } from "@queries/posts/LatestPostsQuery";
 import { Heading } from "@atoms/Heading";
 import { Text } from "@atoms/Text";
 import { PostList } from "@organisms/PostList";
+import { homeContent } from "@/data/pages-content/home";
 
 async function getData(): Promise<Post[]> {
   try {
@@ -23,15 +24,11 @@ async function getData(): Promise<Post[]> {
 interface LatestPostsSectionProps {
   id?: string;
   className?: string;
-  heading?: string;
-  description?: string;
 }
 
 const LatestPostsSection = async ({
   id,
   className,
-  heading = "Últimos posts",
-  description = "Compartilhando alguns aprendizados e experiências reais do dia a dia",
 }: LatestPostsSectionProps) => {
   const posts = await getData();
 
@@ -45,11 +42,11 @@ const LatestPostsSection = async ({
           weight="extrabold"
           className="text-3xl md:text-4xl mb-4"
         >
-          {heading}
+          {homeContent.sections.latestPosts.title}
         </Heading>
 
         <Text as="p" variant="muted">
-          {description}
+          {homeContent.sections.latestPosts.description}
         </Text>
       </div>
 
