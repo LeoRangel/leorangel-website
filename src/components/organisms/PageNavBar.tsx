@@ -41,7 +41,7 @@ export default function PageNavBar({ className }: PageNavBarProps) {
                 "shrink-0 rounded-full",
                 "px-3 h-7 text-[11px] leading-none",
                 "transition-colors",
-                "text-muted-foreground hover:text-foreground",
+                "text-foreground hover:text-foreground",
               )}
             >
               <Link href="/" className="no-underline">
@@ -58,7 +58,7 @@ export default function PageNavBar({ className }: PageNavBarProps) {
                 "shrink-0 rounded-full",
                 "px-3 h-7 text-[11px] leading-none",
                 "transition-colors",
-                "text-muted-foreground hover:text-foreground",
+                "text-foreground hover:text-foreground",
               )}
             >
               <Link href="/posts" className="no-underline">
