@@ -43,6 +43,6 @@ export const HOME_DEFAULT_SEO: Metadata = {
     card: "summary_large_image",
     title: `${profileInfo.name} — ${profileInfo.role}`,
     description: siteInfo.description,
-    images: ["/og-home.jpg"],
+    images: ["/og-home.jpg"], // TODO: add image
   },
 };

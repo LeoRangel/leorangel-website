@@ -34,6 +34,6 @@ export const POSTS_DEFAULT_SEO: Metadata = {
     title: `Posts | ${profileInfo.name}`,
     description:
       "Conteúdos práticos sobre frontend, acessibilidade, performance e web.",
-    images: ["/og-posts.jpg"],
+    images: ["/og-posts.jpg"], // TODO: add image
   },
 };

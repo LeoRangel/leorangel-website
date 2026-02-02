@@ -18,14 +18,15 @@ type Props = {
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = nextSlugToWpSlug(params?.slug || "");
+  const resolvedParams = await params;
+  const slug = nextSlugToWpSlug(resolvedParams?.slug);
   const isPreview = slug?.includes("preview");
   const isHomePage = slug === "/" || slug === "";
 
   const { contentNode } = await fetchGraphQL<{
     contentNode: ContentNode | null;
   }>(print(SeoQuery), {
-    slug: isPreview ? slug.split("preview/")[1] : isHomePage ? "/" : slug,
+    slug: isPreview ? slug.split("preview/")[1] : slug,
     idType: isPreview ? "DATABASE_ID" : "URI",
   });
 
@@ -54,14 +55,15 @@ export function generateStaticParams() {
 }
 
 export default async function Page({ params }: Props) {
-  const slug = nextSlugToWpSlug(params?.slug);
+  const resolvedParams = await params;
+  const slug = nextSlugToWpSlug(resolvedParams?.slug);
   const isPreview = slug?.includes("preview");
   const isHomePage = slug === "/" || slug === "";
 
   const { contentNode } = await fetchGraphQL<{
     contentNode: ContentNode | null;
   }>(print(ContentInfoQuery), {
-    slug: isPreview ? slug?.split("preview/")[1] : isHomePage ? "/" : slug,
+    slug: isPreview ? slug?.split("preview/")[1] : slug,
     idType: isPreview ? "DATABASE_ID" : "URI",
   });
 
