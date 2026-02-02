@@ -1,2 +1,5 @@
-export const nextSlugToWpSlug = (nextSlug: string) =>
-  nextSlug && Array.isArray(nextSlug) ? nextSlug?.join("/") : nextSlug ?? "/";
+export const nextSlugToWpSlug = (nextSlug?: string | string[]): string => {
+  if (!nextSlug) return "/"; // home page
+  if (Array.isArray(nextSlug)) return nextSlug.join("/");
+  return nextSlug;
+};
