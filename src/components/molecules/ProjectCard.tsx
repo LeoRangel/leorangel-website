@@ -3,79 +3,121 @@ import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@ui/card";
-import Image from "next/image";
 import { Heading } from "../atoms/Heading";
+import { Maybe } from "@/gql/graphql";
+import { LuExternalLink, LuGithub } from "react-icons/lu";
+import { Badge } from "@ui/badge";
 
 interface ProjectCardProps {
+  id: string;
   title: string;
-  image?: {
-    url: string;
-    alt: string;
-  };
   link: string;
   description: string;
+  technologies: Maybe<Maybe<string>[]>;
   className?: string;
 }
 
 const ProjectCard = ({
+  id,
   title,
-  image,
   link,
   description,
+  technologies,
   className,
 }: ProjectCardProps) => {
   return (
-    <article className={`${className || ""} rounded-sm`}>
-      <Card
-        className={`rounded-sm overflow-hidden h-full ${
-          image?.url && "pt-0"
-        } gap-4`}
+    <article className={className}>
+      <Link
+        href={link || "#"}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Visite a página do projeto ${title}`}
+        className="no-underline"
+        title={title}
       >
-        {image?.url && (
-          <CardHeader className="relative w-full h-[150px] bg-muted overflow-hidden">
-            <Image
-              src={image?.url}
-              alt={image?.alt || ""}
-              fill
-              priority={false}
-              loading="lazy"
-              objectFit="cover"
-              className="not-prose w-full object-cover"
-              placeholder="blur"
-            />
-          </CardHeader>
-        )}
-        <CardContent className="flex flex-col gap-2">
-          {title && (
-            <CardTitle>
-              <Heading as="h3" unstyled>
-                {title}
-              </Heading>
-            </CardTitle>
-          )}
-          {description && (
-            <CardDescription className="not-prose">
+        <Card
+          className={`rounded-md overflow-hidden h-full gap-4 group hover:shadow-lg hover:border-highlight transition-all`}
+        >
+          <CardHeader className="relative w-full overflow-hidden gap-0">
+            <div className="flex items-start justify-between">
               <div
-                dangerouslySetInnerHTML={{ __html: description || "" }}
-                className="line-clamp-2"
+                className="
+                  flex h-10 w-10 items-center justify-center rounded-lg
+                  bg-muted
+                  transition-colors
+                  group-hover:bg-foreground
+                "
+              >
+                <LuGithub
+                  className="
+                    h-5 w-5
+                    text-muted-foreground
+                    transition-colors
+                    group-hover:text-background
+                  "
+                />
+              </div>
+
+              <LuExternalLink
+                className="
+                  h-5 w-5
+                  text-muted-foreground
+                  transition-colors
+                  group-hover:text-black
+                  dark:group-hover:text-white
+                "
               />
-            </CardDescription>
+            </div>
+          </CardHeader>
+
+          <CardContent className="flex flex-col">
+            {title && (
+              <CardTitle>
+                <Heading
+                  as="h3"
+                  weight="extrabold"
+                  className="text-xl mb-1 group-hover:text-highlight transition-colors"
+                >
+                  {title}
+                </Heading>
+              </CardTitle>
+            )}
+
+            {description && (
+              <CardDescription className="not-prose text-sm leading-relaxed">
+                <div
+                  dangerouslySetInnerHTML={{ __html: description || "" }}
+                  className="line-clamp-2"
+                />
+              </CardDescription>
+            )}
+          </CardContent>
+
+          {technologies && technologies?.length > 0 && (
+            <CardFooter className="mt-auto">
+              <ul
+                className="not-prose list-none flex items-center flex-wrap gap-2 m-0 p-0"
+                aria-label="Tecnologias do projeto"
+              >
+                {technologies?.map((item, index) => (
+                  <li
+                    className="flex"
+                    key={`project-${id}-technologies-item-${index}`}
+                  >
+                    <Badge variant="secondary">
+                      <span className="sr-only">Tecnologia:</span> {item}
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
+            </CardFooter>
           )}
-          {link && (
-            <Link
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Visite a página do projeto ${title}`}
-            >
-              Ir para github
-            </Link>
-          )}
-        </CardContent>
-      </Card>
+        </Card>
+      </Link>
     </article>
   );
 };

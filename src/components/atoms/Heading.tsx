@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 type HeadingTag = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-type HeadingWeight = "normal" | "medium" | "semibold" | "bold";
+type HeadingWeight = "normal" | "medium" | "semibold" | "bold" | "extrabold";
 type HeadingVariant = "default" | "muted" | "secondary";
 
 type HeadingProps = {
@@ -27,6 +27,7 @@ export const Heading: React.FC<HeadingProps> = ({
     medium: "font-medium",
     semibold: "font-semibold",
     bold: "font-bold",
+    extrabold: "font-extrabold",
   };
 
   const variantClasses: Record<HeadingVariant, string> = {

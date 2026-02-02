@@ -6,7 +6,6 @@ import "@/app/globals.css";
 import { PreviewNotice } from "@molecules/PreviewNotice/PreviewNotice";
 import { ThemeProvider } from "@/providers/theme-provider";
 import Footer from "@organisms/Footer";
-import Navigation from "@organisms/Navigation/Navigation";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +28,6 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navigation />
           {children}
           <Footer />
         </ThemeProvider>

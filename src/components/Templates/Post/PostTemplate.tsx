@@ -4,6 +4,7 @@ import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Container } from "@atoms/Container";
 import { PostHeader } from "./components/PostHeader";
 import { PostQuery } from "@queries/post/PostQuery";
+import { Aside } from "@organisms/Aside/Aside";
 
 interface TemplateProps {
   node: ContentNode;
@@ -15,24 +16,32 @@ export default async function PostTemplate({ node }: TemplateProps) {
   });
 
   if (!post) {
-    return <></>;
+    return null;
   }
 
   return (
-    <Container variant="narrowConstrainedPadded">
-      <PostHeader
-        title={post.title || ""}
-        author={{
-          name: post.author?.node.name || "",
-          avatarUrl: post.author?.node.avatar?.url || "",
-        }}
-        date={post.date || ""}
-        readTime=""
-      />
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <Container variant="fullMobileConstrainedPadded">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-[320px_1fr_auto]">
+          <Aside className="mt-4 md:mt-6 lg:mt-12 lg:sticky lg:top-12 h-fit" />
 
-      <section>
-        <div dangerouslySetInnerHTML={{ __html: post.content || "" }} />
-      </section>
-    </Container>
+          <main className="space-y-12 lg:space-y-24 pb-12 lg:py-12">
+            <PostHeader
+              title={post.title || ""}
+              author={{
+                name: post.author?.node.name || "",
+                avatarUrl: post.author?.node.avatar?.url || "",
+              }}
+              date={post.date || ""}
+              readTime=""
+            />
+
+            <section>
+              <div dangerouslySetInnerHTML={{ __html: post.content || "" }} />
+            </section>
+          </main>
+        </div>
+      </Container>
+    </div>
   );
 }

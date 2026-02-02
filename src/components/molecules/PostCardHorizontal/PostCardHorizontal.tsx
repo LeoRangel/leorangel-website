@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import {
   Card,
   CardContent,
@@ -10,27 +9,32 @@ import {
 } from "@ui/card";
 import { formatDate } from "@/utils/formatDate";
 import { Heading } from "@atoms/Heading";
+import { LuCalendar, LuSparkles } from "react-icons/lu";
+import { Tag } from "@/gql/graphql";
+import { isNewPost } from "@/utils/isNewPost";
+import { Badge } from "@ui/badge";
 
 interface PostCardHorizontalProps {
+  id: string;
   title: string;
   url?: string;
   excerpt?: string;
-  image?: {
-    url: string;
-    alt: string;
-  };
   date: string;
+  tags?: Tag[];
   className?: string;
 }
 
 const PostCardHorizontal = ({
+  id,
   title,
   url,
   excerpt,
-  image,
   date,
   className,
+  tags,
 }: PostCardHorizontalProps) => {
+  const showNewPostTag = date && isNewPost(date);
+
   return (
     <article className={className}>
       <Link
@@ -40,52 +44,65 @@ const PostCardHorizontal = ({
         title={title}
       >
         <Card
-          className={`border-0 rounded-none shadow-none gap-4 flex flex-row`}
+          className={`flex gap-4 group rounded-md shadow-none hover:shadow-md hover:border-highlight transition-all cursor-pointer`}
         >
-          <div className="flex-1 h-auto">
-            <CardHeader className="p-0">
-              {title && (
-                <CardTitle>
-                  <Heading as="h2" unstyled>
-                    {title}
-                  </Heading>
-                </CardTitle>
-              )}
-            </CardHeader>
-            <CardContent className="p-0">
-              {excerpt && (
-                <CardDescription className="not-prose">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: excerpt || "" }}
-                    className="line-clamp-2"
-                  />
-                </CardDescription>
-              )}
-            </CardContent>
-            <CardFooter className="p-0 mt-4">
-              {date && (
-                <time
-                  dateTime={date}
-                  className="block text-sm text-muted-foreground"
-                >
-                  {formatDate(date)}
-                </time>
-              )}
-            </CardFooter>
-          </div>
+          <CardHeader className="gap-0">
+            <div className="flex items-center gap-2">
+              <ul
+                className="not-prose list-none flex items-center gap-2 m-0 p-0"
+                aria-label="Tags do post"
+              >
+                {tags?.map((tag) => (
+                  <li className="flex" key={`post-${id}-tag-${tag?.id}`}>
+                    <Badge variant="secondary">
+                      <span className="sr-only">Tag:</span> {tag?.name}
+                    </Badge>
+                  </li>
+                ))}
+              </ul>
 
-          {image?.url && (
-            <div className="ml-auto relative w-[100px] h-[100px] md:w-[150px] md:h-[150px] bg-muted overflow-hidden">
-              <Image
-                src={image?.url}
-                alt={image?.alt || ""}
-                fill
-                priority={false}
-                loading="lazy"
-                className="not-prose w-full object-cover"
-              />
+              {showNewPostTag && (
+                <Badge variant="ghost" aria-label="Post novo" role="status">
+                  <LuSparkles className="w-3 h-3" />
+                  Novo
+                </Badge>
+              )}
             </div>
-          )}
+          </CardHeader>
+
+          <CardContent>
+            {title && (
+              <CardTitle>
+                <Heading
+                  as="h3"
+                  weight="extrabold"
+                  className="text-1xl mb-1 group-hover:text-highlight transition-colors"
+                >
+                  {title}
+                </Heading>
+              </CardTitle>
+            )}
+            {excerpt && (
+              <CardDescription className="not-prose text-muted-foreground leading-relaxed">
+                <div
+                  dangerouslySetInnerHTML={{ __html: excerpt || "" }}
+                  className="line-clamp-2"
+                />
+              </CardDescription>
+            )}
+          </CardContent>
+
+          <CardFooter>
+            {date && (
+              <time
+                dateTime={date}
+                className="text-xs text-muted-foreground flex items-center gap-1"
+              >
+                <LuCalendar className="w-3 h-3" />
+                {formatDate(date)}
+              </time>
+            )}
+          </CardFooter>
         </Card>
       </Link>
     </article>

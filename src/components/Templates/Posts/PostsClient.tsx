@@ -25,18 +25,15 @@ export default function PostsClient({
 
   return (
     <>
-      <section className="mb-8 grid grid-cols-1">
+      <div className="mb-8 flex flex-col space-y-4">
         {posts.map((post) => (
           <PostCardHorizontal
-            className="border-b-1"
             key={`post-card-${post.id}`}
+            id={post.id}
+            className="border-b-1"
             title={post?.title || ""}
             url={post?.uri || ""}
             excerpt={post?.excerpt || ""}
-            image={{
-              url: post?.featuredImage?.node?.sourceUrl || "",
-              alt: post?.featuredImage?.node?.altText || "",
-            }}
             date={post?.date || ""}
           />
         ))}
@@ -45,7 +42,7 @@ export default function PostsClient({
           Array.from({ length: 2 }).map((_, idx) => (
             <PostCardHorizontalSkeleton key={`post-card-skeleton-${idx}`} />
           ))}
-      </section>
+      </div>
 
       <div ref={loaderRef} className="flex justify-center items-center mt-12">
         {!hasMore && <Text as="span">End of posts</Text>}

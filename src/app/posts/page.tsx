@@ -1,8 +1,8 @@
-import PostsPageTemplate from "@templates/PostsPage/PostPageTemplate";
+import PostsTemplate from "@templates/Posts/PostsTemplate";
 import { fetchInitialPosts } from "../../services/posts/fetchInitialPosts";
 
-export default async function PostsPage() {
+export default async function Posts() {
   const initialData = await fetchInitialPosts();
 
-  return <PostsPageTemplate initialData={initialData} />;
+  return <PostsTemplate initialData={initialData} />;
 }

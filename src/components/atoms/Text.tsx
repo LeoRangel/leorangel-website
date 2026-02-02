@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 type TextSize = "xs" | "sm" | "base" | "lg" | "xl";
-type TextWeight = "normal" | "medium" | "semibold" | "bold";
+type TextWeight = "normal" | "medium" | "semibold" | "bold" | "extrabold";
 type TextVariant = "default" | "muted" | "secondary";
 
 type TextProps = {
@@ -35,6 +35,7 @@ export const Text: React.FC<TextProps> = ({
     medium: "font-medium",
     semibold: "font-semibold",
     bold: "font-bold",
+    extrabold: "font-extrabold",
   };
 
   const variantClasses: Record<TextVariant, string> = {
