@@ -30,11 +30,11 @@ export default function PostsClient({
           <PostCardHorizontal
             key={`post-card-${post.id}`}
             id={post.id}
-            className="border-b-1"
             title={post?.title || ""}
             url={post?.uri || ""}
             excerpt={post?.excerpt || ""}
             date={post?.date || ""}
+            tags={post?.tags?.nodes}
           />
         ))}
 
@@ -45,12 +45,13 @@ export default function PostsClient({
       </div>
 
       <div ref={loaderRef} className="flex justify-center items-center mt-12">
-        {!hasMore && <Text as="span">End of posts</Text>}
+        {!hasMore && <Text as="span">Fim dos posts</Text>}
       </div>
 
       {error && (
-        <Text as="span" className="text-red-500 mt-6 text-center">
-          Sorry, an error occurred when loading the posts. Try again!
+        <Text as="span" className="text-red-500 block my-12 text-center">
+          Desculpe, ocorreu um erro enquanto carregando os posts. Tente
+          novamente!
         </Text>
       )}
     </>
