@@ -44,7 +44,7 @@ const PostCardHorizontal = ({
         title={title}
       >
         <Card
-          className={`flex gap-4 group rounded-md shadow-none hover:shadow-md hover:border-highlight transition-all cursor-pointer`}
+          className={`flex gap-4 group shadow-none hover:shadow-md hover:border-highlight transition-all cursor-pointer`}
         >
           <CardHeader className="gap-0">
             <div className="flex items-center gap-2">

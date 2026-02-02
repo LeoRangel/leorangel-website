@@ -20,7 +20,7 @@ const SocialLinks = () => {
             target="_blank"
             rel="noopener noreferrer"
             className="
-              group flex items-center gap-3 rounded-lg border p-3 no-underline
+              group flex items-center gap-3 rounded-xl border p-3 no-underline
               bg-card text-card-foreground
               border-border
               transition-all
