@@ -6,13 +6,13 @@ export const homeContent = {
     latestPosts: {
       title: "Últimos posts",
       description:
-        "Artigos sobre frontend, acessibilidade, performance, desenvolvimento web, entre outros assuntos...",
+        "Artigos sobre frontend, acessibilidade, performance, desenvolvimento web, entre outros assuntos.",
     },
 
     featuredProjects: {
       title: "Projetos em destaque",
       description:
-        "Alguns projetos e experimentos que venho desenvolvendo ao longo do tempo...",
+        "Alguns projetos e experimentos que venho desenvolvendo ao longo do tempo.",
     },
 
     about: {
