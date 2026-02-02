@@ -32,7 +32,7 @@ const LatestPostsSection = async ({
 }: LatestPostsSectionProps) => {
   const posts = await getData();
 
-  if (!posts || posts?.length < 1) null;
+  const hasPosts = posts && posts?.length > 0;
 
   return (
     <section id={id} className={className}>
@@ -51,7 +51,8 @@ const LatestPostsSection = async ({
       </div>
 
       <div className="w-full grid gap-4">
-        <PostList posts={posts} />
+        {hasPosts && <PostList posts={posts} />}
+        {!hasPosts && <Text variant="muted">Em breve...</Text>}
       </div>
     </section>
   );

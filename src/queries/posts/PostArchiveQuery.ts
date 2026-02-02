@@ -10,6 +10,22 @@ export const PostArchiveQuery = gql`
         uri
         excerpt
         date
+        modified
+        commentCount
+        categories {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
+        tags {
+          nodes {
+            id
+            name
+            slug
+          }
+        }
         featuredImage {
           node {
             sourceUrl

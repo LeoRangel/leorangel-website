@@ -32,7 +32,7 @@ const PinnedProjectsSection = async ({
 }: PinnedProjectsSectionProps) => {
   const projects = await getData();
 
-  if (!projects || projects?.length < 1) null;
+  const hasProjects = projects && projects?.length > 0;
 
   return (
     <section id={id} className={className}>
@@ -51,7 +51,8 @@ const PinnedProjectsSection = async ({
       </div>
 
       <div className="w-full grid md:grid-cols-2 gap-4 mb-8 mt-12">
-        <ProjectList projects={projects} />
+        {hasProjects && <ProjectList projects={projects} />}
+        {!hasProjects && <Text variant="muted">Em breve...</Text>}
       </div>
     </section>
   );
