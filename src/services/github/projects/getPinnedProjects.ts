@@ -3,15 +3,16 @@ import { fetchGitHubGraphQL } from "@/utils/fetchGitHubGraphQL";
 import { PinnedProjectsQuery } from "@graphql/github/queries/projects/PinnedProjectsQuery";
 import { Project } from "@/types/Project";
 import { GitHubPinnedProjectsResponse } from "./types";
+import { GITHUB_USERNAME } from "@/data/sociaLinks";
 
 export async function getPinnedProjects(): Promise<Project[]> {
-  const username = process.env.GITHUB_USERNAME;
-
-  if (!username) {
-    throw new Error("Missing GITHUB_USERNAME environment variable");
-  }
+  const username = GITHUB_USERNAME;
 
   try {
+    if (!username) {
+      throw new Error("Missing GITHUB_USERNAME environment variable");
+    }
+
     const data = await fetchGitHubGraphQL<GitHubPinnedProjectsResponse>(
       print(PinnedProjectsQuery),
       { login: username },
