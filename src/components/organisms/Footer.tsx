@@ -20,9 +20,6 @@ export default async function Footer() {
               aria-label="Navegação de links úteis"
               className="flex flex-wrap justify-center items-center"
             >
-              <Text as="span" size="xs" variant="muted" className="mr-4">
-                Links úteis:
-              </Text>
               <ul className="not-prose list-none flex flex-wrap justify-center items-center gap-0 p-0 m-0">
                 {menuItems?.map((item) => (
                   <li key={item.uri}>
