@@ -1,7 +1,7 @@
 import { print } from "graphql";
 import { defaultNavigationMenu } from "@/data/navigation";
 import type { MenuItem, RootQueryToMenuItemConnection } from "@/gql/graphql";
-import { MenuQuery } from "@queries/menu/MenuQuery";
+import { MenuQuery } from "@graphql/wordpress/queries/menu/MenuQuery";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 
 interface GetMenuOptions {

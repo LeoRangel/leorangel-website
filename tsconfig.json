@@ -19,8 +19,7 @@
       }
     ],
     "paths": {
-      "@mutations/*": ["./src/mutations/*"],
-      "@queries/*": ["./src/queries/*"],
+      "@graphql/*": ["./src/graphql/*"],
       "@services/*": ["./src/services/*"],
       "@providers/*": ["./src/providers/*"],
       "@atoms/*": ["./src/components/atoms/*"],

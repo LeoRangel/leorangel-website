@@ -4,7 +4,7 @@ import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Container } from "@atoms/Container";
 import { LatestPostsSection } from "./components/LatestPostsSection";
 import { PinnedProjectsSection } from "./components/PinnedProjectsSection";
-import { HomePageQuery } from "@queries/page/HomePageQuery";
+import { HomePageQuery } from "@graphql/wordpress/queries/page/HomePageQuery";
 import { AboutSection } from "./components/AboutSection";
 import { SectionNav } from "./components/SectionNav";
 import { ContactSection } from "./components/ContactSection";

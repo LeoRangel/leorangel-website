@@ -1,7 +1,7 @@
 import { print } from "graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Post, PostConnection } from "@/gql/graphql";
-import { LatestPostsQuery } from "@queries/posts/LatestPostsQuery";
+import { LatestPostsQuery } from "@graphql/wordpress/queries/posts/LatestPostsQuery";
 import { Heading } from "@atoms/Heading";
 import { Text } from "@atoms/Text";
 import { PostList } from "@organisms/PostList";

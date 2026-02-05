@@ -3,7 +3,7 @@ import { ContentNode, Post } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { Container } from "@atoms/Container";
 import { PostHeader } from "./components/PostHeader";
-import { PostQuery } from "@queries/post/PostQuery";
+import { PostQuery } from "@graphql/wordpress/queries/post/PostQuery";
 import { Aside } from "@organisms/Aside/Aside";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { blogPostingJsonLd } from "@/data/structured-data/blogPosting";

@@ -3,15 +3,15 @@ import { notFound } from "next/navigation";
 import { print } from "graphql/language/printer";
 import { setSeoData } from "@/utils/seoData";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { ContentInfoQuery } from "@queries/general/ContentInfoQuery";
+import { ContentInfoQuery } from "@graphql/wordpress/queries/general/ContentInfoQuery";
 import { ContentNode } from "@/gql/graphql";
 import { nextSlugToWpSlug } from "@/utils/nextSlugToWpSlug";
-import { SeoQuery } from "@queries/general/SeoQuery";
+import { SeoQuery } from "@graphql/wordpress/queries/general/SeoQuery";
 import PageTemplate from "@templates/Page/PageTemplate";
 import PostTemplate from "@templates/Post/PostTemplate";
 import HomePageTemplate from "@templates/HomePage/HomePageTemplate";
 import { HOME_DEFAULT_SEO } from "@/data/seo";
-import { mergeMetadata } from "@/lib/seo/mergeMetadata";
+import { mergeMetadata } from "@/utils/mergeMetadata";
 
 export interface Props {
   params: Promise<{ slug: string }>;

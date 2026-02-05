@@ -15,24 +15,6 @@ export type Scalars = {
   Float: { input: number; output: number; }
 };
 
-/** A Field Group managed by ACF */
-export type AcfFieldGroup = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
-/** Fields associated with an ACF Field Group */
-export type AcfFieldGroupFields = {
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-};
-
 /** Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from. */
 export type Avatar = {
   __typename?: 'Avatar';
@@ -5711,7 +5693,7 @@ export type Previewable = {
 };
 
 /** My projects */
-export type Project = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfProjects & {
+export type Project = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & {
   __typename?: 'Project';
   /**
    * The ancestors of the content node.
@@ -5790,8 +5772,6 @@ export type Project = ContentNode & DatabaseIdentifier & MenuItemLinkable & Node
    * @deprecated Deprecated in favor of the databaseId field
    */
   projectId: Scalars['Int']['output'];
-  /** Fields of the Projects ACF Field Group */
-  projects?: Maybe<Projects>;
   /** The Yoast SEO data of the ContentNode */
   seo?: Maybe<PostTypeSeo>;
   /** The uri slug for the post. This is equivalent to the WP_Post-&gt;post_name field and the post_name column in the database for the &quot;post_objects&quot; table. */
@@ -5943,37 +5923,6 @@ export type ProjectToProjectConnectionPageInfo = PageInfo & ProjectConnectionPag
   seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** The &quot;Projects&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;. */
-export type Projects = AcfFieldGroup & AcfFieldGroupFields & Projects_Fields & {
-  __typename?: 'Projects';
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group */
-  description?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group */
-  link?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;checkbox&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group */
-  technologies?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-/** Interface representing fields of the ACF &quot;Projects&quot; Field Group */
-export type Projects_Fields = {
-  /** Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group */
-  description?: Maybe<Scalars['String']['output']>;
-  /**
-   * The name of the field group
-   * @deprecated Use __typename instead
-   */
-  fieldGroupName?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group */
-  link?: Maybe<Scalars['String']['output']>;
-  /** Field of the &quot;checkbox&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group */
-  technologies?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
 /** The reading setting type */
@@ -10688,12 +10637,6 @@ export type WpPageInfo = {
   seo?: Maybe<SeoPostTypePageInfo>;
   /** When paginating backwards, the cursor to continue. */
   startCursor?: Maybe<Scalars['String']['output']>;
-};
-
-/** Provides access to fields of the &quot;Projects&quot; ACF Field Group via the &quot;projects&quot; field */
-export type WithAcfProjects = {
-  /** Fields of the Projects ACF Field Group */
-  projects?: Maybe<Projects>;
 };
 
 /** The writing setting type */

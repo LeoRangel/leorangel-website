@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { print } from "graphql";
-import { PostArchiveQuery } from "@queries/posts/PostArchiveQuery";
+import { PostArchiveQuery } from "@graphql/wordpress/queries/posts/PostArchiveQuery";
 
 export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
@@ -15,7 +15,7 @@ export async function GET(req: Request) {
   if (!isValidCursor) {
     return NextResponse.json(
       { error: "Invalid 'after' cursor format." },
-      { status: 400 }
+      { status: 400 },
     );
   }
 
@@ -39,13 +39,13 @@ export async function GET(req: Request) {
         headers: {
           "Cache-Control": "public, s-maxage=60, stale-while-revalidate=30",
         },
-      }
+      },
     );
   } catch (error) {
     console.error("API error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

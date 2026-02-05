@@ -3,18 +3,6 @@ schema {
   mutation: RootMutation
 }
 
-"""A Field Group managed by ACF"""
-interface AcfFieldGroup {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-}
-
-"""Fields associated with an ACF Field Group"""
-interface AcfFieldGroupFields {
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-}
-
 """
 Avatars are profile images for users. WordPress by default uses the Gravatar service to host and fetch avatars from.
 """
@@ -8440,7 +8428,7 @@ interface Previewable {
 }
 
 """My projects"""
-type Project implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable & WithAcfProjects {
+type Project implements ContentNode & DatabaseIdentifier & MenuItemLinkable & Node & NodeWithFeaturedImage & NodeWithTemplate & NodeWithTitle & Previewable & UniformResourceIdentifiable {
   """The ancestors of the content node."""
   ancestors(
     """
@@ -8605,9 +8593,6 @@ type Project implements ContentNode & DatabaseIdentifier & MenuItemLinkable & No
   """The id field matches the WP_Post-&gt;ID field."""
   projectId: Int! @deprecated(reason: "Deprecated in favor of the databaseId field")
 
-  """Fields of the Projects ACF Field Group"""
-  projects: Projects
-
   """The Yoast SEO data of the ContentNode"""
   seo: PostTypeSEO
 
@@ -8763,52 +8748,6 @@ type ProjectToProjectConnectionPageInfo implements PageInfo & ProjectConnectionP
 
   """When paginating backwards, the cursor to continue."""
   startCursor: String
-}
-
-"""
-The &quot;Projects&quot; Field Group. Added to the Schema by &quot;WPGraphQL for ACF&quot;.
-"""
-type Projects implements AcfFieldGroup & AcfFieldGroupFields & Projects_Fields {
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group
-  """
-  description: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group
-  """
-  link: String
-
-  """
-  Field of the &quot;checkbox&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group
-  """
-  technologies: [String]
-}
-
-"""
-Interface representing fields of the ACF &quot;Projects&quot; Field Group
-"""
-interface Projects_Fields implements AcfFieldGroup & AcfFieldGroupFields {
-  """
-  Field of the &quot;text&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group
-  """
-  description: String
-
-  """The name of the field group"""
-  fieldGroupName: String @deprecated(reason: "Use __typename instead")
-
-  """
-  Field of the &quot;url&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group
-  """
-  link: String
-
-  """
-  Field of the &quot;checkbox&quot; Field Type added to the schema as part of the &quot;Projects&quot; Field Group
-  """
-  technologies: [String]
 }
 
 """The reading setting type"""
@@ -15552,14 +15491,6 @@ interface WPPageInfo implements PageInfo {
 
   """When paginating backwards, the cursor to continue."""
   startCursor: String
-}
-
-"""
-Provides access to fields of the &quot;Projects&quot; ACF Field Group via the &quot;projects&quot; field
-"""
-interface WithAcfProjects {
-  """Fields of the Projects ACF Field Group"""
-  projects: Projects
 }
 
 """The writing setting type"""

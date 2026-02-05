@@ -1,3 +1,5 @@
+export const GITHUB_USERNAME = `LeoRangel`;
+
 export type SocialLink = {
   name: string;
   href: string;
@@ -10,9 +12,9 @@ export type SocialLink = {
 export const socialLinks: SocialLink[] = [
   {
     name: "GitHub",
-    href: "https://github.com/LeoRangel",
+    href: `https://github.com/${GITHUB_USERNAME}`,
     iconKey: "LuGithub",
-    handle: "/leorangel",
+    handle: `/${GITHUB_USERNAME}`,
   },
   {
     name: "LinkedIn",
