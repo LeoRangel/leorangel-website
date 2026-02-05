@@ -5,25 +5,29 @@ import { Project } from "@/types/Project";
 import { GitHubPinnedProjectsResponse } from "./types";
 
 export async function getPinnedProjects(): Promise<Project[]> {
+  const username = process.env.GITHUB_USERNAME;
+
+  if (!username) {
+    throw new Error("Missing GITHUB_USERNAME environment variable");
+  }
+
   try {
     const data = await fetchGitHubGraphQL<GitHubPinnedProjectsResponse>(
       print(PinnedProjectsQuery),
-      {
-        login: process.env.GITHUB_USERNAME,
-      },
+      { login: username },
     );
 
     const edges = data?.user?.pinnedItems?.edges ?? [];
 
     return edges.map(({ node }) => ({
-      id: node?.id || "",
-      name: node?.name || "",
-      url: node?.url || "",
+      id: node?.id ?? "",
+      name: node?.name ?? "",
+      url: node?.url ?? "",
       homepageUrl: node?.homepageUrl,
       openGraphImageUrl: node?.openGraphImageUrl,
       shortDescriptionHTML: node?.shortDescriptionHTML,
       isTemplate: node?.isTemplate,
-      stars: node?.stargazers?.totalCount,
+      stars: node?.stargazers?.totalCount ?? 0,
       topics:
         node?.repositoryTopics?.edges?.map(
           (edge) => edge?.node?.topic?.name ?? "",
