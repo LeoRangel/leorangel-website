@@ -4,7 +4,7 @@ import { Container } from "@atoms/Container";
 import { Button } from "@ui/button";
 import Link from "next/link";
 import { Text } from "@atoms/Text";
-import { getMenu } from "@services/navigation/getMenu";
+import { getMenu } from "@services/wordpress/navigation/getMenu";
 import { footerInfo } from "@/data/footer";
 
 export default async function Footer() {

@@ -1,7 +1,7 @@
 import PostsClient from "@templates/Posts/PostsClient";
 import { Container } from "@atoms/Container";
 import { Heading } from "@atoms/Heading";
-import { PostsResponse } from "@services/posts/fetchInitialPosts";
+import { PostsResponse } from "@services/wordpress/posts/fetchInitialPosts";
 import { Aside } from "@organisms/Aside/Aside";
 
 type Props = {

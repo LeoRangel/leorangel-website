@@ -2,7 +2,7 @@ import { Heading } from "@atoms/Heading";
 import { Text } from "@atoms/Text";
 import { ProjectList } from "@organisms/ProjectList";
 import { homeContent } from "@/data/pages-content/home";
-import { getPinnedProjects } from "@/services/github/getPinnedProjects";
+import { getPinnedProjects } from "@services/github/projects/getPinnedProjects";
 
 interface PinnedProjectsSectionProps {
   id?: string;
