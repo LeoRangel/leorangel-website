@@ -4,8 +4,8 @@ import { ContentNode, LoginPayload } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { draftMode } from "next/headers";
 import { NextResponse } from "next/server";
-import { ContentNodeQuery } from "@queries/general/ContentNodeQuery";
-import { LoginUserMutation } from "@mutations/login/LoginUserMutation";
+import { ContentNodeQuery } from "@graphql/wordpress/queries/general/ContentNodeQuery";
+import { LoginUserMutation } from "@/graphql/wordpress/mutations/login/LoginUserMutation";
 
 export const dynamic = "force-dynamic";
 
@@ -19,7 +19,7 @@ export async function GET(request: Request) {
   }
 
   const { login } = await fetchGraphQL<{ login: LoginPayload | null }>(
-    print(LoginUserMutation)
+    print(LoginUserMutation),
   );
 
   const authToken = login?.authToken;
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
     {
       id,
     },
-    { Authorization: `Bearer ${authToken}` }
+    { Authorization: `Bearer ${authToken}` },
   );
 
   if (!contentNode) {
@@ -49,7 +49,7 @@ export async function GET(request: Request) {
       contentNode?.status === "draft"
         ? `/preview/${contentNode?.databaseId}`
         : contentNode?.uri
-    }`
+    }`,
   );
 
   response?.headers.set("Set-Cookie", `wp_jwt=${authToken}; path=/;`);

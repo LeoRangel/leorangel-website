@@ -1,6 +1,6 @@
 import { print } from "graphql";
 import { fetchGitHubGraphQL } from "@/utils/fetchGitHubGraphQL";
-import { PinnedProjectsQuery } from "@/graphql/github/queries/PinnedProjectsQuery";
+import { PinnedProjectsQuery } from "@graphql/github/queries/projects/PinnedProjectsQuery";
 import { Project } from "@/types/Project";
 import { GitHubPinnedProjectsResponse } from "./types";
 

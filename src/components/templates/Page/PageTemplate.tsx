@@ -1,7 +1,7 @@
 import { print } from "graphql/language/printer";
 import { ContentNode, Page } from "@/gql/graphql";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
-import { PageQuery } from "@queries/page/PageQuery";
+import { PageQuery } from "@graphql/wordpress/queries/page/PageQuery";
 import { Container } from "@atoms/Container";
 import { Heading } from "@atoms/Heading";
 import { Separator } from "@ui/separator";

@@ -3,8 +3,8 @@ import { print } from "graphql/language/printer";
 import { setSeoData } from "@/utils/seoData";
 import { fetchGraphQL } from "@/utils/fetchGraphQL";
 import { ContentNode, Page } from "@/gql/graphql";
-import { PageQuery } from "@queries/page/PageQuery";
-import { SeoQuery } from "@queries/general/SeoQuery";
+import { PageQuery } from "@graphql/wordpress/queries/page/PageQuery";
+import { SeoQuery } from "@graphql/wordpress/queries/general/SeoQuery";
 import { NOT_FOUND_DEFAULT_SEO } from "@/data/seo";
 import ErrorTemplate from "@templates/Error/ErrorTemplate";
 
