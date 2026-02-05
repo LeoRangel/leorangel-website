@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@ui/card";
 import { Heading } from "../atoms/Heading";
-import { Maybe } from "@/gql/graphql";
 import { LuExternalLink, LuGithub } from "react-icons/lu";
 import { Badge } from "@ui/badge";
 
@@ -17,7 +16,7 @@ interface ProjectCardProps {
   title: string;
   link: string;
   description: string;
-  technologies: Maybe<Maybe<string>[]>;
+  topics: string[];
   className?: string;
 }
 
@@ -26,7 +25,7 @@ const ProjectCard = ({
   title,
   link,
   description,
-  technologies,
+  topics,
   className,
 }: ProjectCardProps) => {
   return (
@@ -97,19 +96,19 @@ const ProjectCard = ({
             )}
           </CardContent>
 
-          {technologies && technologies?.length > 0 && (
+          {topics && topics?.length > 0 && (
             <CardFooter className="mt-auto">
               <ul
                 className="not-prose list-none flex items-center flex-wrap gap-2 m-0 p-0"
-                aria-label="Tecnologias do projeto"
+                aria-label="Tópicos do projeto"
               >
-                {technologies?.map((item, index) => (
+                {topics?.map((item, index) => (
                   <li
                     className="flex"
-                    key={`project-${id}-technologies-item-${index}`}
+                    key={`project-${id}-topics-item-${item}-${index}`}
                   >
                     <Badge variant="secondary">
-                      <span className="sr-only">Tecnologia:</span> {item}
+                      <span className="sr-only">Tópico:</span> {item}
                     </Badge>
                   </li>
                 ))}

@@ -1,4 +1,4 @@
-import { Project } from "@/gql/graphql";
+import { Project } from "@/types/Project";
 import { ProjectCard } from "@molecules/ProjectCard";
 
 const ProjectList = ({ projects }: { projects: Project[] }) => {
@@ -10,10 +10,10 @@ const ProjectList = ({ projects }: { projects: Project[] }) => {
         <ProjectCard
           key={`project-card-${project.id}`}
           id={project.id}
-          title={project?.title || ""}
-          link={project?.projects?.link || ""}
-          description={project?.projects?.description || ""}
-          technologies={project?.projects?.technologies || []}
+          title={project?.name || ""}
+          link={project?.url || ""}
+          description={project?.shortDescriptionHTML || ""}
+          topics={project?.topics || []}
         />
       ))}
     </>
