@@ -54,9 +54,6 @@ export function generateStaticParams() {
   return [];
 }
 
-export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
-
 export default async function Page({ params }: Props) {
   const resolvedParams = await params;
   const slug = nextSlugToWpSlug(resolvedParams?.slug);

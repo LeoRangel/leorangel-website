@@ -1,5 +1,5 @@
 import { Project } from "@/types/Project";
-import { ProjectCard } from "@molecules/ProjectCard";
+import { ProjectCard } from "@molecules/ProjectCard/ProjectCard";
 
 const ProjectList = ({ projects }: { projects: Project[] }) => {
   if (!projects?.length) return null;
