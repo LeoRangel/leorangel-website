@@ -7,18 +7,13 @@ type Section = {
 };
 
 interface UseActiveSectionOptions {
-  rootMargin?: string;
+  offset?: number;
   initialActiveId?: string;
-  updateHash?: boolean;
 }
 
 export function useActiveSection<T extends Section>(
   sections: T[],
-  {
-    rootMargin = "-45% 0px -45% 0px",
-    initialActiveId,
-    updateHash = true,
-  }: UseActiveSectionOptions = {},
+  { offset = 0, initialActiveId }: UseActiveSectionOptions = {},
 ) {
   const [active, setActive] = useState<string | undefined>(
     initialActiveId ?? sections[0]?.id,
@@ -27,38 +22,66 @@ export function useActiveSection<T extends Section>(
   useEffect(() => {
     if (!sections.length) return;
 
-    const observers: IntersectionObserver[] = [];
+    const elements = sections
+      .map((s) => document.getElementById(s.id))
+      .filter((el): el is HTMLElement => Boolean(el));
 
-    sections.forEach((section) => {
-      const el = document.getElementById(section.id);
-      if (!el) return;
+    if (!elements.length) return;
 
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) {
-            setActive(section.id);
+    const computeActive = () => {
+      const atBottom =
+        window.innerHeight + window.scrollY >=
+        document.documentElement.scrollHeight - 1;
 
-            if (updateHash) {
-              history.replaceState(null, "", `#${section.id}`);
-            }
-          }
-        },
-        { rootMargin },
-      );
+      if (atBottom) {
+        const lastId = elements[elements.length - 1].id;
+        setActive((prev) => (prev === lastId ? prev : lastId));
+        return;
+      }
 
-      observer.observe(el);
-      observers.push(observer);
+      let closestId: string | null = null;
+      let minDistance = Infinity;
+
+      elements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+
+        if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
+
+        const distance = Math.abs(rect.top - offset);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestId = el.id;
+        }
+      });
+
+      if (closestId) {
+        setActive((prev) =>
+          prev === closestId ? prev : closestId || undefined,
+        );
+      }
+    };
+
+    const observer = new IntersectionObserver(() => computeActive(), {
+      rootMargin: `-${offset}px 0px 0px 0px`,
+      threshold: 0,
     });
 
+    elements.forEach((el) => observer.observe(el));
+
+    window.addEventListener("scroll", computeActive, {
+      passive: true,
+    });
+
+    computeActive();
+
     return () => {
-      observers.forEach((o) => o.disconnect());
+      observer.disconnect();
+      window.removeEventListener("scroll", computeActive);
     };
-  }, [sections, rootMargin, updateHash]);
+  }, [sections, offset]);
 
   const activeIndex = sections.findIndex((s) => s.id === active);
 
-  return {
-    active,
-    activeIndex,
-  };
+  return { active, activeIndex };
 }
