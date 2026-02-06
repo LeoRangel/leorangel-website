@@ -42,9 +42,7 @@ const AboutSection = ({ id, className }: AboutSectionProps) => {
             >
               {profileInfo?.skills?.primary?.map((skill, index) => (
                 <li className="flex" key={`about-skill-item-${index}`}>
-                  <Badge variant="secondary">
-                    <span className="sr-only">Habilidade:</span> {skill}
-                  </Badge>
+                  <Badge variant="secondary">{skill}</Badge>
                 </li>
               ))}
             </ul>
@@ -64,9 +62,7 @@ const AboutSection = ({ id, className }: AboutSectionProps) => {
             >
               {profileInfo?.skills?.secondary?.map((skill, index) => (
                 <li className="flex" key={`about-skill-item-${index}`}>
-                  <Badge variant="secondary">
-                    <span className="sr-only">Habilidade:</span> {skill}
-                  </Badge>
+                  <Badge variant="secondary">{skill}</Badge>
                 </li>
               ))}
             </ul>

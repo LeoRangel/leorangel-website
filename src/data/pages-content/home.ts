@@ -20,10 +20,10 @@ export const homeContent = {
       description: "Um pouco de contexto sobre quem escreve por aqui...",
       skills: {
         primary: {
-          title: "No que mais trabalho:",
+          title: "Principais habilidades e tecnologias:",
         },
         secondary: {
-          title: "Outras tecnologias e ferramentas que exploro:",
+          title: "Outras tecnologias e ferramentas que uso frequentemente:",
         },
       },
     },
