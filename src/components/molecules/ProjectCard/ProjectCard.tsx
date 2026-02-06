@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@ui/card";
-import { Heading } from "../atoms/Heading";
+import { Heading } from "../../atoms/Heading";
 import { LuExternalLink, LuGithub } from "react-icons/lu";
 import { Badge } from "@ui/badge";
 

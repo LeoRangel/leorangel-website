@@ -3,7 +3,7 @@ import { Skeleton } from "@ui/skeleton";
 
 const PostCardHorizontalSkeleton = () => {
   return (
-    <Card className={`flex gap-4 group shadow-none `}>
+    <Card className={`flex gap-4 shadow-none`}>
       <CardContent>
         <div className="flex-1 h-auto">
           <Skeleton className="h-[14px] w-[20%] rounded-xl mb-4" />
